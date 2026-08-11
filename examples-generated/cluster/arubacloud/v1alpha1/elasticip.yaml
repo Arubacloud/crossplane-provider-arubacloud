@@ -11,7 +11,9 @@ spec:
     billingPeriod: Hour
     location: ITBG-Bergamo
     name: example-elastic-ip
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - public
     - test

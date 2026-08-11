@@ -12,7 +12,9 @@ spec:
     billingPeriod: Hour
     location: ITBG-Bergamo
     name: zonal-blockstorage
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     sizeGb: 100
     tags:
     - storage

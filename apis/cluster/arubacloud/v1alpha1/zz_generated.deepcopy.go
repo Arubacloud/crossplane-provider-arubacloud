@@ -465,6 +465,16 @@ func (in *BlockstorageInitParameters) DeepCopyInto(out *BlockstorageInitParamete
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SizeGb != nil {
 		in, out := &in.SizeGb, &out.SizeGb
 		*out = new(float64)
@@ -659,6 +669,16 @@ func (in *BlockstorageParameters) DeepCopyInto(out *BlockstorageParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SizeGb != nil {
 		in, out := &in.SizeGb, &out.SizeGb
 		*out = new(float64)
@@ -786,6 +806,16 @@ func (in *CloudserverInitParameters) DeepCopyInto(out *CloudserverInitParameters
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings
@@ -960,6 +990,16 @@ func (in *CloudserverParameters) DeepCopyInto(out *CloudserverParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings
@@ -3223,6 +3263,16 @@ func (in *ElasticipInitParameters) DeepCopyInto(out *ElasticipInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -3371,6 +3421,16 @@ func (in *ElasticipParameters) DeepCopyInto(out *ElasticipParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -4725,6 +4785,16 @@ func (in *KeypairInitParameters) DeepCopyInto(out *KeypairInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -4860,6 +4930,16 @@ func (in *KeypairParameters) DeepCopyInto(out *KeypairParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -4932,6 +5012,16 @@ func (in *NetworkInitParameters) DeepCopyInto(out *NetworkInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ElasticIPURIRefRef != nil {
+		in, out := &in.ElasticIPURIRefRef, &out.ElasticIPURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ElasticIPURIRefSelector != nil {
+		in, out := &in.ElasticIPURIRefSelector, &out.ElasticIPURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecuritygroupURIRefs != nil {
 		in, out := &in.SecuritygroupURIRefs, &out.SecuritygroupURIRefs
 		*out = make([]*string, len(*in))
@@ -4942,6 +5032,18 @@ func (in *NetworkInitParameters) DeepCopyInto(out *NetworkInitParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.SecuritygroupURIRefsRefs != nil {
+		in, out := &in.SecuritygroupURIRefsRefs, &out.SecuritygroupURIRefsRefs
+		*out = make([]v2.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SecuritygroupURIRefsSelector != nil {
+		in, out := &in.SecuritygroupURIRefsSelector, &out.SecuritygroupURIRefsSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRefs != nil {
 		in, out := &in.SubnetURIRefs, &out.SubnetURIRefs
@@ -4954,10 +5056,32 @@ func (in *NetworkInitParameters) DeepCopyInto(out *NetworkInitParameters) {
 			}
 		}
 	}
+	if in.SubnetURIRefsRefs != nil {
+		in, out := &in.SubnetURIRefsRefs, &out.SubnetURIRefsRefs
+		*out = make([]v2.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SubnetURIRefsSelector != nil {
+		in, out := &in.SubnetURIRefsSelector, &out.SubnetURIRefsSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -5026,6 +5150,16 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ElasticIPURIRefRef != nil {
+		in, out := &in.ElasticIPURIRefRef, &out.ElasticIPURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ElasticIPURIRefSelector != nil {
+		in, out := &in.ElasticIPURIRefSelector, &out.ElasticIPURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecuritygroupURIRefs != nil {
 		in, out := &in.SecuritygroupURIRefs, &out.SecuritygroupURIRefs
 		*out = make([]*string, len(*in))
@@ -5036,6 +5170,18 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.SecuritygroupURIRefsRefs != nil {
+		in, out := &in.SecuritygroupURIRefsRefs, &out.SecuritygroupURIRefsRefs
+		*out = make([]v2.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SecuritygroupURIRefsSelector != nil {
+		in, out := &in.SecuritygroupURIRefsSelector, &out.SecuritygroupURIRefsSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRefs != nil {
 		in, out := &in.SubnetURIRefs, &out.SubnetURIRefs
@@ -5048,10 +5194,32 @@ func (in *NetworkParameters) DeepCopyInto(out *NetworkParameters) {
 			}
 		}
 	}
+	if in.SubnetURIRefsRefs != nil {
+		in, out := &in.SubnetURIRefsRefs, &out.SubnetURIRefsRefs
+		*out = make([]v2.Reference, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.SubnetURIRefsSelector != nil {
+		in, out := &in.SubnetURIRefsSelector, &out.SubnetURIRefsSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -7144,6 +7312,16 @@ func (in *SettingsInitParameters) DeepCopyInto(out *SettingsInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.KeyPairURIRefRef != nil {
+		in, out := &in.KeyPairURIRefRef, &out.KeyPairURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyPairURIRefSelector != nil {
+		in, out := &in.KeyPairURIRefSelector, &out.KeyPairURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.UserDataSecretRef != nil {
 		in, out := &in.UserDataSecretRef, &out.UserDataSecretRef
 		*out = new(v2.SecretKeySelector)
@@ -7198,6 +7376,16 @@ func (in *SettingsParameters) DeepCopyInto(out *SettingsParameters) {
 		in, out := &in.KeyPairURIRef, &out.KeyPairURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.KeyPairURIRefRef != nil {
+		in, out := &in.KeyPairURIRefRef, &out.KeyPairURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.KeyPairURIRefSelector != nil {
+		in, out := &in.KeyPairURIRefSelector, &out.KeyPairURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.UserDataSecretRef != nil {
 		in, out := &in.UserDataSecretRef, &out.UserDataSecretRef
@@ -7616,6 +7804,16 @@ func (in *StorageInitParameters) DeepCopyInto(out *StorageInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BootVolumeURIRefRef != nil {
+		in, out := &in.BootVolumeURIRefRef, &out.BootVolumeURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BootVolumeURIRefSelector != nil {
+		in, out := &in.BootVolumeURIRefSelector, &out.BootVolumeURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new StorageInitParameters.
@@ -7655,6 +7853,16 @@ func (in *StorageParameters) DeepCopyInto(out *StorageParameters) {
 		in, out := &in.BootVolumeURIRef, &out.BootVolumeURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.BootVolumeURIRefRef != nil {
+		in, out := &in.BootVolumeURIRefRef, &out.BootVolumeURIRefRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BootVolumeURIRefSelector != nil {
+		in, out := &in.BootVolumeURIRefSelector, &out.BootVolumeURIRefSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -7718,6 +7926,16 @@ func (in *SubnetInitParameters) DeepCopyInto(out *SubnetInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -7743,6 +7961,16 @@ func (in *SubnetInitParameters) DeepCopyInto(out *SubnetInitParameters) {
 		in, out := &in.VPCID, &out.VPCID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCIDRef != nil {
+		in, out := &in.VPCIDRef, &out.VPCIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCIDSelector != nil {
+		in, out := &in.VPCIDSelector, &out.VPCIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -7957,6 +8185,16 @@ func (in *SubnetParameters) DeepCopyInto(out *SubnetParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -7982,6 +8220,16 @@ func (in *SubnetParameters) DeepCopyInto(out *SubnetParameters) {
 		in, out := &in.VPCID, &out.VPCID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCIDRef != nil {
+		in, out := &in.VPCIDRef, &out.VPCIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCIDSelector != nil {
+		in, out := &in.VPCIDSelector, &out.VPCIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -8150,6 +8398,16 @@ func (in *VPCInitParameters) DeepCopyInto(out *VPCInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -8283,6 +8541,16 @@ func (in *VPCParameters) DeepCopyInto(out *VPCParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.Reference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.Selector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
