@@ -17,7 +17,16 @@ type RestoreInitParameters struct {
 
 	// created.)
 	// ID of the backup to restore from. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Backup
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+
+	// Reference to a Backup in arubacloud to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDRef *v2.Reference `json:"backupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Backup in arubacloud to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDSelector *v2.Selector `json:"backupIdSelector,omitempty" tf:"-"`
 
 	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -29,7 +38,16 @@ type RestoreInitParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -41,7 +59,16 @@ type RestoreInitParameters struct {
 
 	// created.)
 	// ID of the target block storage volume to restore the backup onto. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDRef *v2.Reference `json:"volumeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDSelector *v2.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }
 
 type RestoreObservation struct {
@@ -86,8 +113,17 @@ type RestoreParameters struct {
 
 	// created.)
 	// ID of the backup to restore from. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Backup
 	// +kubebuilder:validation:Optional
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
+
+	// Reference to a Backup in arubacloud to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDRef *v2.Reference `json:"backupIdRef,omitempty" tf:"-"`
+
+	// Selector for a Backup in arubacloud to populate backupId.
+	// +kubebuilder:validation:Optional
+	BackupIDSelector *v2.Selector `json:"backupIdSelector,omitempty" tf:"-"`
 
 	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -101,8 +137,17 @@ type RestoreParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -116,8 +161,17 @@ type RestoreParameters struct {
 
 	// created.)
 	// ID of the target block storage volume to restore the backup onto. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDRef *v2.Reference `json:"volumeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDSelector *v2.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }
 
 // RestoreSpec defines the desired state of Restore
@@ -156,11 +210,8 @@ type RestoreStatus struct {
 type Restore struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.backupId) || (has(self.initProvider) && has(self.initProvider.backupId))",message="spec.forProvider.backupId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.volumeId) || (has(self.initProvider) && has(self.initProvider.volumeId))",message="spec.forProvider.volumeId is a required parameter"
 	Spec   RestoreSpec   `json:"spec"`
 	Status RestoreStatus `json:"status,omitempty"`
 }

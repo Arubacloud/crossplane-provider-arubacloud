@@ -12,10 +12,14 @@ spec:
     billingPeriod: monthly
     location: ITBG-Bergamo
     name: example-backup
-    projectId: project-123
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     retentionDays: 30
     tags:
     - env:dev
     - service:demo
     type: full
-    volumeId: volume-123
+    volumeIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

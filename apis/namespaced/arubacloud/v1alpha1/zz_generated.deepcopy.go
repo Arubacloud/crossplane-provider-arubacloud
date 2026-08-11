@@ -153,6 +153,16 @@ func (in *BackupInitParameters) DeepCopyInto(out *BackupInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.RetentionDays != nil {
 		in, out := &in.RetentionDays, &out.RetentionDays
 		*out = new(float64)
@@ -183,6 +193,16 @@ func (in *BackupInitParameters) DeepCopyInto(out *BackupInitParameters) {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeIDRef != nil {
+		in, out := &in.VolumeIDRef, &out.VolumeIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeIDSelector != nil {
+		in, out := &in.VolumeIDSelector, &out.VolumeIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -327,6 +347,16 @@ func (in *BackupParameters) DeepCopyInto(out *BackupParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.RetentionDays != nil {
 		in, out := &in.RetentionDays, &out.RetentionDays
 		*out = new(float64)
@@ -357,6 +387,16 @@ func (in *BackupParameters) DeepCopyInto(out *BackupParameters) {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeIDRef != nil {
+		in, out := &in.VolumeIDRef, &out.VolumeIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeIDSelector != nil {
+		in, out := &in.VolumeIDSelector, &out.VolumeIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -6081,6 +6121,16 @@ func (in *RestoreInitParameters) DeepCopyInto(out *RestoreInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BackupIDRef != nil {
+		in, out := &in.BackupIDRef, &out.BackupIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BackupIDSelector != nil {
+		in, out := &in.BackupIDSelector, &out.BackupIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -6095,6 +6145,16 @@ func (in *RestoreInitParameters) DeepCopyInto(out *RestoreInitParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -6116,6 +6176,16 @@ func (in *RestoreInitParameters) DeepCopyInto(out *RestoreInitParameters) {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeIDRef != nil {
+		in, out := &in.VolumeIDRef, &out.VolumeIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeIDSelector != nil {
+		in, out := &in.VolumeIDSelector, &out.VolumeIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -6235,6 +6305,16 @@ func (in *RestoreParameters) DeepCopyInto(out *RestoreParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.BackupIDRef != nil {
+		in, out := &in.BackupIDRef, &out.BackupIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BackupIDSelector != nil {
+		in, out := &in.BackupIDSelector, &out.BackupIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
 		*out = new(string)
@@ -6249,6 +6329,16 @@ func (in *RestoreParameters) DeepCopyInto(out *RestoreParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -6270,6 +6360,16 @@ func (in *RestoreParameters) DeepCopyInto(out *RestoreParameters) {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeIDRef != nil {
+		in, out := &in.VolumeIDRef, &out.VolumeIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeIDSelector != nil {
+		in, out := &in.VolumeIDSelector, &out.VolumeIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -7454,6 +7554,16 @@ func (in *SnapshotInitParameters) DeepCopyInto(out *SnapshotInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -7474,6 +7584,16 @@ func (in *SnapshotInitParameters) DeepCopyInto(out *SnapshotInitParameters) {
 		in, out := &in.VolumeURI, &out.VolumeURI
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeURIRef != nil {
+		in, out := &in.VolumeURIRef, &out.VolumeURIRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeURISelector != nil {
+		in, out := &in.VolumeURISelector, &out.VolumeURISelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -7608,6 +7728,16 @@ func (in *SnapshotParameters) DeepCopyInto(out *SnapshotParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -7628,6 +7758,16 @@ func (in *SnapshotParameters) DeepCopyInto(out *SnapshotParameters) {
 		in, out := &in.VolumeURI, &out.VolumeURI
 		*out = new(string)
 		**out = **in
+	}
+	if in.VolumeURIRef != nil {
+		in, out := &in.VolumeURIRef, &out.VolumeURIRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VolumeURISelector != nil {
+		in, out := &in.VolumeURISelector, &out.VolumeURISelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
