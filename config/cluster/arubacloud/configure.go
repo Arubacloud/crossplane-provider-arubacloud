@@ -11,6 +11,17 @@ import (
 // references use full URIs rather than bare IDs.
 const uriExtractor = `github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)`
 
+// Terraform resource type names used as TerraformName in reference configs.
+const (
+	tfProject       = "arubacloud_project"
+	tfVPC           = "arubacloud_vpc"
+	tfSubnet        = "arubacloud_subnet"
+	tfKeyPair       = "arubacloud_keypair"
+	tfElasticIP     = "arubacloud_elasticip"
+	tfBlockStorage  = "arubacloud_blockstorage"
+	tfSecurityGroup = "arubacloud_securitygroup"
+)
+
 // Configure configures ArubaCloud resources for the cluster-scoped provider.
 func Configure(p *ujconfig.Provider) {
 	configureProject(p)
@@ -23,42 +34,42 @@ func Configure(p *ujconfig.Provider) {
 }
 
 func configureProject(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_project", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfProject, func(r *ujconfig.Resource) {
 		// Project is the root resource — no incoming references.
 	})
 }
 
 func configureVPC(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_vpc", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfVPC, func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 	})
 }
 
 func configureSubnet(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_subnet", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfSubnet, func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 		r.References["vpc_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_vpc",
+			TerraformName: tfVPC,
 		}
 	})
 }
 
 func configureKeyPair(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_keypair", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfKeyPair, func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 	})
 }
 
 func configureElasticIP(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_elasticip", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfElasticIP, func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 
 		// Expose the assigned public IP as a connection detail.
@@ -73,9 +84,9 @@ func configureElasticIP(p *ujconfig.Provider) {
 }
 
 func configureBlockStorage(p *ujconfig.Provider) {
-	p.AddResourceConfigurator("arubacloud_blockstorage", func(r *ujconfig.Resource) {
+	p.AddResourceConfigurator(tfBlockStorage, func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 	})
 }
@@ -83,31 +94,31 @@ func configureBlockStorage(p *ujconfig.Provider) {
 func configureCloudServer(p *ujconfig.Provider) {
 	p.AddResourceConfigurator("arubacloud_cloudserver", func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{
-			TerraformName: "arubacloud_project",
+			TerraformName: tfProject,
 		}
 		// URI-based references: extract status.atProvider.uri from the referenced resource.
 		r.References["network.vpc_uri_ref"] = ujconfig.Reference{
-			TerraformName: "arubacloud_vpc",
+			TerraformName: tfVPC,
 			Extractor:     uriExtractor,
 		}
 		r.References["network.subnet_uri_refs"] = ujconfig.Reference{
-			TerraformName: "arubacloud_subnet",
+			TerraformName: tfSubnet,
 			Extractor:     uriExtractor,
 		}
 		r.References["network.securitygroup_uri_refs"] = ujconfig.Reference{
-			TerraformName: "arubacloud_securitygroup",
+			TerraformName: tfSecurityGroup,
 			Extractor:     uriExtractor,
 		}
 		r.References["network.elastic_ip_uri_ref"] = ujconfig.Reference{
-			TerraformName: "arubacloud_elasticip",
+			TerraformName: tfElasticIP,
 			Extractor:     uriExtractor,
 		}
 		r.References["settings.key_pair_uri_ref"] = ujconfig.Reference{
-			TerraformName: "arubacloud_keypair",
+			TerraformName: tfKeyPair,
 			Extractor:     uriExtractor,
 		}
 		r.References["storage.boot_volume_uri_ref"] = ujconfig.Reference{
-			TerraformName: "arubacloud_blockstorage",
+			TerraformName: tfBlockStorage,
 			Extractor:     uriExtractor,
 		}
 	})

@@ -5,6 +5,13 @@ import (
 	"testing"
 )
 
+const (
+	testProjectID = testProjectID
+	testVPCID     = testVPCID
+	testDbaasID   = testDbaasID
+	testSGID      = testSGID
+)
+
 // TestLeafIDFromSlash verifies the helper that extracts a specific segment.
 func TestLeafIDFromSlash(t *testing.T) {
 	tests := []struct {
@@ -36,8 +43,8 @@ func TestLeafIDFromSlash(t *testing.T) {
 func TestSubnetGetIDFn(t *testing.T) {
 	e := subnetExternalName()
 	id, err := e.GetIDFn(context.Background(), "sub-xyz", map[string]any{
-		"project_id": "proj-abc",
-		"vpc_id":     "vpc-123",
+		"project_id": testProjectID,
+		"vpc_id":     testVPCID,
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -51,7 +58,7 @@ func TestSubnetGetIDFn(t *testing.T) {
 func TestSubnetGetIDFn_MissingVpcID(t *testing.T) {
 	e := subnetExternalName()
 	_, err := e.GetIDFn(context.Background(), "sub-xyz", map[string]any{
-		"project_id": "proj-abc",
+		"project_id": testProjectID,
 	}, nil)
 	if err == nil {
 		t.Error("expected error when vpc_id is missing, got nil")
@@ -62,8 +69,8 @@ func TestSubnetGetIDFn_MissingVpcID(t *testing.T) {
 func TestSecurityGroupGetIDFn(t *testing.T) {
 	e := securityGroupExternalName()
 	id, err := e.GetIDFn(context.Background(), "sg-xyz", map[string]any{
-		"project_id": "proj-abc",
-		"vpc_id":     "vpc-123",
+		"project_id": testProjectID,
+		"vpc_id":     testVPCID,
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -78,9 +85,9 @@ func TestSecurityGroupGetIDFn(t *testing.T) {
 func TestSecurityRuleGetIDFn(t *testing.T) {
 	e := securityRuleExternalName()
 	id, err := e.GetIDFn(context.Background(), "rule-xyz", map[string]any{
-		"project_id":        "proj-abc",
-		"vpc_id":            "vpc-123",
-		"security_group_id": "sg-456",
+		"project_id":        testProjectID,
+		"vpc_id":            testVPCID,
+		"security_group_id": testSGID,
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -106,7 +113,7 @@ func TestSnapshotGetExternalName(t *testing.T) {
 func TestSnapshotGetIDFn(t *testing.T) {
 	e := snapshotExternalName()
 	id, err := e.GetIDFn(context.Background(), "snap-xyz", map[string]any{
-		"project_id":     "proj-abc",
+		"project_id":     testProjectID,
 		"billing_period": "Hour",
 	}, nil)
 	if err != nil {
@@ -122,8 +129,8 @@ func TestSnapshotGetIDFn(t *testing.T) {
 func TestDatabaseGetIDFn(t *testing.T) {
 	e := databaseExternalName()
 	id, err := e.GetIDFn(context.Background(), "db-xyz", map[string]any{
-		"project_id": "proj-abc",
-		"dbaas_id":   "dbaas-123",
+		"project_id": testProjectID,
+		"dbaas_id":   testDbaasID,
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
