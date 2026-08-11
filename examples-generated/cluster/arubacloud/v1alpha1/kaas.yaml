@@ -16,10 +16,18 @@ spec:
         address: 10.0.2.0/24
         name: kaas-node-cidr
       podCidr: 10.0.3.0/24
-      securityGroupName: kaas-security-group
-      subnetUriRef: ${arubacloud_subnet.example.uri}
-      vpcUriRef: ${arubacloud_vpc.example.uri}
-    projectId: your-project-id
+      securityGroupNameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      subnetUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      vpcUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     settings:
     - ha: true
       kubernetesVersion: 1.33.2

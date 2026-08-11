@@ -12,16 +12,28 @@ spec:
     location: ITBG-Bergamo
     name: example-container-registry
     network:
-      publicIpUriRef: ${arubacloud_elasticip.example.uri}
-      securityGroupUriRef: ${arubacloud_securitygroup.example.uri}
-      subnetUriRef: ${arubacloud_subnet.example.uri}
-      vpcUriRef: ${arubacloud_vpc.example.uri}
-    projectId: your-project-id
+      publicIpUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      securityGroupUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      subnetUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      vpcUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     settings:
       adminUser: adminuser
       concurrentUsersFlavor: Small
     storage:
-      blockStorageUriRef: ${arubacloud_blockstorage.example.uri}
+      blockStorageUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
     tags:
     - container
     - test
