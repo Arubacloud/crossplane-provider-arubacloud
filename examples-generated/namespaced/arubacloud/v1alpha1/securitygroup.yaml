@@ -1,0 +1,18 @@
+apiVersion: arubacloud.arubacloud.m.crossplane.io/v1alpha1
+kind: Securitygroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: arubacloud/v1alpha1/securitygroup
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-security-group
+    projectId: your-project-id
+    tags:
+    - security
+    - example
+    vpcId: your-vpc-id
