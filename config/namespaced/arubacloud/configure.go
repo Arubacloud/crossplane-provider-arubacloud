@@ -22,12 +22,22 @@ const (
 	tfBackup        = "arubacloud_backup"
 	tfVPCPeering    = "arubacloud_vpcpeering"
 	tfVPNTunnel     = "arubacloud_vpntunnel"
+	tfDBaaS         = "arubacloud_dbaas"
+	tfDatabase      = "arubacloud_database"
+	tfDBaaSUser     = "arubacloud_dbaasuser"
 )
 
 // Configure configures ArubaCloud resources for the namespaced provider.
 func Configure(p *ujconfig.Provider) {
 	configureKaaS(p)
 	configureContainerRegistry(p)
+	configureDBaaS(p)
+	configureDatabase(p)
+	configureDBaaSUser(p)
+	configureDatabaseGrant(p)
+	configureDatabaseBackup(p)
+	configureKMS(p)
+	configureScheduleJob(p)
 	configureProject(p)
 	configureVPC(p)
 	configureSubnet(p)
@@ -244,5 +254,70 @@ func configureContainerRegistry(p *ujconfig.Provider) {
 			TerraformName: tfBlockStorage,
 			Extractor:     uriExtractor,
 		}
+	})
+}
+
+func configureDBaaS(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfDBaaS, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["network.vpc_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfVPC,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.subnet_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfSubnet,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.security_group_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfSecurityGroup,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.elastic_ip_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfElasticIP,
+			Extractor:     uriExtractor,
+		}
+	})
+}
+
+func configureDatabase(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfDatabase, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["dbaas_id"] = ujconfig.Reference{TerraformName: tfDBaaS}
+	})
+}
+
+func configureDBaaSUser(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfDBaaSUser, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["dbaas_id"] = ujconfig.Reference{TerraformName: tfDBaaS}
+	})
+}
+
+func configureDatabaseGrant(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_databasegrant", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["dbaas_id"] = ujconfig.Reference{TerraformName: tfDBaaS}
+		r.References["database"] = ujconfig.Reference{TerraformName: tfDatabase}
+		r.References["user_id"] = ujconfig.Reference{TerraformName: tfDBaaSUser}
+	})
+}
+
+func configureDatabaseBackup(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_databasebackup", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["dbaas_id"] = ujconfig.Reference{TerraformName: tfDBaaS}
+		r.References["database"] = ujconfig.Reference{TerraformName: tfDatabase}
+	})
+}
+
+func configureKMS(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_kms", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+	})
+}
+
+func configureScheduleJob(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_schedulejob", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
 	})
 }

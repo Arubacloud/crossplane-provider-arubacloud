@@ -17,7 +17,16 @@ type DatabaseInitParameters struct {
 
 	// (String) ID of the parent DBaaS cluster this database belongs to.
 	// ID of the parent DBaaS cluster this database belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaas
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.NamespacedReference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.NamespacedSelector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -25,7 +34,16 @@ type DatabaseInitParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
 	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
@@ -62,8 +80,17 @@ type DatabaseParameters struct {
 
 	// (String) ID of the parent DBaaS cluster this database belongs to.
 	// ID of the parent DBaaS cluster this database belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaas
 	// +kubebuilder:validation:Optional
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.NamespacedReference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.NamespacedSelector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -72,8 +99,17 @@ type DatabaseParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
 	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
@@ -117,9 +153,7 @@ type DatabaseStatus struct {
 type Database struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	Spec   DatabaseSpec   `json:"spec"`
 	Status DatabaseStatus `json:"status,omitempty"`
 }

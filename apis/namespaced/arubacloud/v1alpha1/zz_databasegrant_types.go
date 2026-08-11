@@ -17,15 +17,42 @@ type DatabasegrantInitParameters struct {
 
 	// created.)
 	// ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Database
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
+
+	// Reference to a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseRef *v2.NamespacedReference `json:"databaseRef,omitempty" tf:"-"`
+
+	// Selector for a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseSelector *v2.NamespacedSelector `json:"databaseSelector,omitempty" tf:"-"`
 
 	// created.)
 	// ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaas
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.NamespacedReference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.NamespacedSelector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -37,7 +64,16 @@ type DatabasegrantInitParameters struct {
 
 	// created.)
 	// Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaasuser
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
+
+	// Reference to a Dbaasuser in arubacloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDRef *v2.NamespacedReference `json:"userIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaasuser in arubacloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDSelector *v2.NamespacedSelector `json:"userIdSelector,omitempty" tf:"-"`
 }
 
 type DatabasegrantObservation struct {
@@ -78,18 +114,45 @@ type DatabasegrantParameters struct {
 
 	// created.)
 	// ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Database
 	// +kubebuilder:validation:Optional
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
+	// Reference to a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseRef *v2.NamespacedReference `json:"databaseRef,omitempty" tf:"-"`
+
+	// Selector for a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseSelector *v2.NamespacedSelector `json:"databaseSelector,omitempty" tf:"-"`
+
 	// created.)
 	// ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaas
 	// +kubebuilder:validation:Optional
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.NamespacedReference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.NamespacedSelector `json:"dbaasIdSelector,omitempty" tf:"-"`
+
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -103,8 +166,17 @@ type DatabasegrantParameters struct {
 
 	// created.)
 	// Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Dbaasuser
 	// +kubebuilder:validation:Optional
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
+
+	// Reference to a Dbaasuser in arubacloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDRef *v2.NamespacedReference `json:"userIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaasuser in arubacloud to populate userId.
+	// +kubebuilder:validation:Optional
+	UserIDSelector *v2.NamespacedSelector `json:"userIdSelector,omitempty" tf:"-"`
 }
 
 // DatabasegrantSpec defines the desired state of Databasegrant
@@ -143,11 +215,7 @@ type DatabasegrantStatus struct {
 type Databasegrant struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.database) || (has(self.initProvider) && has(self.initProvider.database))",message="spec.forProvider.database is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.role) || (has(self.initProvider) && has(self.initProvider.role))",message="spec.forProvider.role is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.userId) || (has(self.initProvider) && has(self.initProvider.userId))",message="spec.forProvider.userId is a required parameter"
 	Spec   DatabasegrantSpec   `json:"spec"`
 	Status DatabasegrantStatus `json:"status,omitempty"`
 }

@@ -8,8 +8,16 @@ metadata:
   name: example
 spec:
   forProvider:
-    database: ${arubacloud_database.example.id}
-    dbaasId: ${arubacloud_dbaas.example.id}
-    projectId: ${arubacloud_project.example.id}
+    databaseSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    dbaasIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     role: readwrite
-    userId: ${arubacloud_dbaasuser.example.id}
+    userIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

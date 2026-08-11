@@ -21,11 +21,29 @@ type DatabasebackupInitParameters struct {
 
 	// (String) Name of the logical database within the DBaaS cluster to back up.
 	// Name of the logical database within the DBaaS cluster to back up.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Database
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
+
+	// Reference to a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseRef *v2.Reference `json:"databaseRef,omitempty" tf:"-"`
+
+	// Selector for a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseSelector *v2.Selector `json:"databaseSelector,omitempty" tf:"-"`
 
 	// (String) ID of the DBaaS cluster or database to back up.
 	// ID of the DBaaS cluster or database to back up.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Dbaas
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.Reference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.Selector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// Bergamo). See the available locations and zones.
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
@@ -33,7 +51,16 @@ type DatabasebackupInitParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -103,13 +130,31 @@ type DatabasebackupParameters struct {
 
 	// (String) Name of the logical database within the DBaaS cluster to back up.
 	// Name of the logical database within the DBaaS cluster to back up.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Database
 	// +kubebuilder:validation:Optional
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
+	// Reference to a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseRef *v2.Reference `json:"databaseRef,omitempty" tf:"-"`
+
+	// Selector for a Database in arubacloud to populate database.
+	// +kubebuilder:validation:Optional
+	DatabaseSelector *v2.Selector `json:"databaseSelector,omitempty" tf:"-"`
+
 	// (String) ID of the DBaaS cluster or database to back up.
 	// ID of the DBaaS cluster or database to back up.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Dbaas
 	// +kubebuilder:validation:Optional
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.Reference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.Selector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// Bergamo). See the available locations and zones.
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
@@ -118,8 +163,17 @@ type DatabasebackupParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -174,10 +228,7 @@ type Databasebackup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.database) || (has(self.initProvider) && has(self.initProvider.database))",message="spec.forProvider.database is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"
 	Spec   DatabasebackupSpec   `json:"spec"`
 	Status DatabasebackupStatus `json:"status,omitempty"`

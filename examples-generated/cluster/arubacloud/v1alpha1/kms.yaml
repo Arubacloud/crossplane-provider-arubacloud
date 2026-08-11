@@ -11,7 +11,9 @@ spec:
     billingPeriod: Hour
     location: ITBG-Bergamo
     name: basic-kms
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - encryption
     - security

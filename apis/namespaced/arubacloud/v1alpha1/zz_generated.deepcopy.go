@@ -1945,6 +1945,16 @@ func (in *DatabaseInitParameters) DeepCopyInto(out *DatabaseInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -1954,6 +1964,16 @@ func (in *DatabaseInitParameters) DeepCopyInto(out *DatabaseInitParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
@@ -2057,6 +2077,16 @@ func (in *DatabaseParameters) DeepCopyInto(out *DatabaseParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Name != nil {
 		in, out := &in.Name, &out.Name
 		*out = new(string)
@@ -2066,6 +2096,16 @@ func (in *DatabaseParameters) DeepCopyInto(out *DatabaseParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
@@ -2159,10 +2199,30 @@ func (in *DatabasebackupInitParameters) DeepCopyInto(out *DatabasebackupInitPara
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatabaseRef != nil {
+		in, out := &in.DatabaseRef, &out.DatabaseRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DatabaseSelector != nil {
+		in, out := &in.DatabaseSelector, &out.DatabaseSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DbaasID != nil {
 		in, out := &in.DbaasID, &out.DbaasID
 		*out = new(string)
 		**out = **in
+	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
@@ -2173,6 +2233,16 @@ func (in *DatabasebackupInitParameters) DeepCopyInto(out *DatabasebackupInitPara
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -2328,10 +2398,30 @@ func (in *DatabasebackupParameters) DeepCopyInto(out *DatabasebackupParameters) 
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatabaseRef != nil {
+		in, out := &in.DatabaseRef, &out.DatabaseRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DatabaseSelector != nil {
+		in, out := &in.DatabaseSelector, &out.DatabaseSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DbaasID != nil {
 		in, out := &in.DbaasID, &out.DbaasID
 		*out = new(string)
 		**out = **in
+	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Location != nil {
 		in, out := &in.Location, &out.Location
@@ -2342,6 +2432,16 @@ func (in *DatabasebackupParameters) DeepCopyInto(out *DatabasebackupParameters) 
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -2446,15 +2546,45 @@ func (in *DatabasegrantInitParameters) DeepCopyInto(out *DatabasegrantInitParame
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatabaseRef != nil {
+		in, out := &in.DatabaseRef, &out.DatabaseRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DatabaseSelector != nil {
+		in, out := &in.DatabaseSelector, &out.DatabaseSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DbaasID != nil {
 		in, out := &in.DbaasID, &out.DbaasID
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Role != nil {
 		in, out := &in.Role, &out.Role
@@ -2470,6 +2600,16 @@ func (in *DatabasegrantInitParameters) DeepCopyInto(out *DatabasegrantInitParame
 		in, out := &in.UserID, &out.UserID
 		*out = new(string)
 		**out = **in
+	}
+	if in.UserIDRef != nil {
+		in, out := &in.UserIDRef, &out.UserIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.UserIDSelector != nil {
+		in, out := &in.UserIDSelector, &out.UserIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -2578,15 +2718,45 @@ func (in *DatabasegrantParameters) DeepCopyInto(out *DatabasegrantParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DatabaseRef != nil {
+		in, out := &in.DatabaseRef, &out.DatabaseRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DatabaseSelector != nil {
+		in, out := &in.DatabaseSelector, &out.DatabaseSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.DbaasID != nil {
 		in, out := &in.DbaasID, &out.DbaasID
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Role != nil {
 		in, out := &in.Role, &out.Role
@@ -2602,6 +2772,16 @@ func (in *DatabasegrantParameters) DeepCopyInto(out *DatabasegrantParameters) {
 		in, out := &in.UserID, &out.UserID
 		*out = new(string)
 		**out = **in
+	}
+	if in.UserIDRef != nil {
+		in, out := &in.UserIDRef, &out.UserIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.UserIDSelector != nil {
+		in, out := &in.UserIDSelector, &out.UserIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -2715,6 +2895,16 @@ func (in *DbaasInitParameters) DeepCopyInto(out *DbaasInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Storage != nil {
 		in, out := &in.Storage, &out.Storage
 		*out = new(DbaasStorageInitParameters)
@@ -2793,20 +2983,60 @@ func (in *DbaasNetworkInitParameters) DeepCopyInto(out *DbaasNetworkInitParamete
 		*out = new(string)
 		**out = **in
 	}
+	if in.ElasticIPURIRefRef != nil {
+		in, out := &in.ElasticIPURIRefRef, &out.ElasticIPURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ElasticIPURIRefSelector != nil {
+		in, out := &in.ElasticIPURIRefSelector, &out.ElasticIPURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecurityGroupURIRef != nil {
 		in, out := &in.SecurityGroupURIRef, &out.SecurityGroupURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.SecurityGroupURIRefRef != nil {
+		in, out := &in.SecurityGroupURIRefRef, &out.SecurityGroupURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupURIRefSelector != nil {
+		in, out := &in.SecurityGroupURIRefSelector, &out.SecurityGroupURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -2863,20 +3093,60 @@ func (in *DbaasNetworkParameters) DeepCopyInto(out *DbaasNetworkParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ElasticIPURIRefRef != nil {
+		in, out := &in.ElasticIPURIRefRef, &out.ElasticIPURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ElasticIPURIRefSelector != nil {
+		in, out := &in.ElasticIPURIRefSelector, &out.ElasticIPURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecurityGroupURIRef != nil {
 		in, out := &in.SecurityGroupURIRef, &out.SecurityGroupURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.SecurityGroupURIRefRef != nil {
+		in, out := &in.SecurityGroupURIRefRef, &out.SecurityGroupURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupURIRefSelector != nil {
+		in, out := &in.SecurityGroupURIRefSelector, &out.SecurityGroupURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -3013,6 +3283,16 @@ func (in *DbaasParameters) DeepCopyInto(out *DbaasParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Storage != nil {
 		in, out := &in.Storage, &out.Storage
@@ -3197,11 +3477,31 @@ func (in *DbaasuserInitParameters) DeepCopyInto(out *DbaasuserInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	out.PasswordSecretRef = in.PasswordSecretRef
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
@@ -3310,11 +3610,31 @@ func (in *DbaasuserParameters) DeepCopyInto(out *DbaasuserParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.DbaasIDRef != nil {
+		in, out := &in.DbaasIDRef, &out.DbaasIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.DbaasIDSelector != nil {
+		in, out := &in.DbaasIDSelector, &out.DbaasIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	out.PasswordSecretRef = in.PasswordSecretRef
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Timeout != nil {
 		in, out := &in.Timeout, &out.Timeout
@@ -4225,6 +4545,16 @@ func (in *KMSInitParameters) DeepCopyInto(out *KMSInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
 		*out = make([]*string, len(*in))
@@ -4368,6 +4698,16 @@ func (in *KMSParameters) DeepCopyInto(out *KMSParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Tags != nil {
 		in, out := &in.Tags, &out.Tags
@@ -6798,6 +7138,16 @@ func (in *SchedulejobInitParameters) DeepCopyInto(out *SchedulejobInitParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Properties != nil {
 		in, out := &in.Properties, &out.Properties
 		*out = new(PropertiesInitParameters)
@@ -6941,6 +7291,16 @@ func (in *SchedulejobParameters) DeepCopyInto(out *SchedulejobParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Properties != nil {
 		in, out := &in.Properties, &out.Properties

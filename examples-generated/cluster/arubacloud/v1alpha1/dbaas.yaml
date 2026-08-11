@@ -14,11 +14,21 @@ spec:
     location: ITBG-Bergamo
     name: basic-dbaas
     network:
-      elasticIpUriRef: ${arubacloud_elasticip.example.uri}
-      securityGroupUriRef: ${arubacloud_securitygroup.example.uri}
-      subnetUriRef: ${arubacloud_subnet.example.uri}
-      vpcUriRef: ${arubacloud_vpc.example.uri}
-    projectId: ${arubacloud_project.example.id}
+      elasticIpUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      securityGroupUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      subnetUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+      vpcUriRefSelector:
+        matchLabels:
+          testing.upbound.io/example-name: example
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     storage:
       autoscaling:
         availableSpace: 100
