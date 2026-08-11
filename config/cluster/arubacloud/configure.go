@@ -252,10 +252,19 @@ func configureKaaS(p *ujconfig.Provider) {
 			TerraformName: tfSecurityGroup,
 			Extractor:     nameExtractor,
 		}
-		// kubeconfig is auto-mapped to connection details by Upjet (Sensitive field).
-		// Expose management_ip as an additional connection detail.
+		// pod_cidr is user-controlled; the Terraform provider never overwrites it
+		// from the API response, so we must not late-initialize it either.
+		r.LateInitializer = ujconfig.LateInitializer{
+			IgnoredFields: []string{"network.pod_cidr"},
+		}
+		// Expose kubeconfig and management_ip as connection details.
+		// kubeconfig may already be auto-mapped by Upjet if it is Sensitive in the
+		// Terraform schema; adding it here ensures it is always present.
 		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
 			conn := map[string][]byte{}
+			if kc, ok := attr["kubeconfig"].(string); ok && kc != "" {
+				conn["kubeconfig"] = []byte(kc)
+			}
 			if ip, ok := attr["management_ip"].(string); ok && ip != "" {
 				conn["management_ip"] = []byte(ip)
 			}
