@@ -6,10 +6,10 @@ import (
 )
 
 const (
-	testProjectID = testProjectID
-	testVPCID     = testVPCID
-	testDbaasID   = testDbaasID
-	testSGID      = testSGID
+	testProjectID = "proj-abc"
+	testVPCID     = "vpc-123"
+	testDbaasID   = "dbaas-123"
+	testSGID      = "sg-456"
 )
 
 // TestLeafIDFromSlash verifies the helper that extracts a specific segment.
