@@ -6,14 +6,16 @@ import (
 )
 
 const (
-	testProjectID  = "proj-abc"
-	testVPCID      = "vpc-123"
-	testDbaasID    = "dbaas-123"
-	testSGID       = "sg-456"
-	tfProjectIDKey = "project_id"
-	tfVPCIDKey     = "vpc_id"
-	tfSGIDKey      = "security_group_id"
-	tfDbaasIDKey   = "dbaas_id"
+	testProjectID     = "proj-abc"
+	testVPCID         = "vpc-123"
+	testDbaasID       = "dbaas-123"
+	testSGID          = "sg-456"
+	tfProjectIDKey    = "project_id"
+	tfVPCIDKey        = "vpc_id"
+	tfSGIDKey         = "security_group_id"
+	tfDbaasIDKey      = "dbaas_id"
+	tfVPCPeeringIDKey = "vpc_peering_id"
+	tfVPNTunnelIDKey  = "vpn_tunnel_id"
 )
 
 // TestLeafIDFromSlash verifies the helper that extracts a specific segment.
@@ -165,5 +167,38 @@ func TestIdentifierFromProviderWithProjectID_Missing(t *testing.T) {
 	_, err := e.GetIDFn(context.Background(), "vpc-abc", map[string]any{}, nil)
 	if err == nil {
 		t.Error("expected error when project_id is missing, got nil")
+	}
+}
+
+// TestVPCPeeringRouteGetIDFn verifies the corrected vpc_peering_id key.
+func TestVPCPeeringRouteGetIDFn(t *testing.T) {
+	e := vpcPeeringRouteExternalName()
+	id, err := e.GetIDFn(context.Background(), "route-xyz", map[string]any{
+		tfProjectIDKey:    testProjectID,
+		tfVPCIDKey:        testVPCID,
+		tfVPCPeeringIDKey: "peering-789",
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/" + testVPCID + "/peering-789/route-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
+	}
+}
+
+// TestVPNRouteGetIDFn verifies vpn_tunnel_id key.
+func TestVPNRouteGetIDFn(t *testing.T) {
+	// vpnroute uses identifierFromProviderWithProjectID (2-part).
+	e := identifierFromProviderWithProjectID()
+	id, err := e.GetIDFn(context.Background(), "route-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/route-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
 	}
 }

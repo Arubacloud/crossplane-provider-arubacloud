@@ -25,7 +25,16 @@ type VpcpeeringrouteInitParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Remote network CIDR reachable through the peering connection (e.g., `10.0.2.0/24`).
 	RemoteNetworkAddress *string `json:"remoteNetworkAddress,omitempty" tf:"remote_network_address,omitempty"`
@@ -37,10 +46,28 @@ type VpcpeeringrouteInitParameters struct {
 	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// ID of the VPC this peering route belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
+	// Reference to a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v2.NamespacedReference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v2.NamespacedSelector `json:"vpcIdSelector,omitempty" tf:"-"`
+
 	// ID of the VPC peering connection this route belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Vpcpeering
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
+
+	// Reference to a Vpcpeering in arubacloud to populate vpcPeeringId.
+	// +kubebuilder:validation:Optional
+	VPCPeeringIDRef *v2.NamespacedReference `json:"vpcPeeringIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vpcpeering in arubacloud to populate vpcPeeringId.
+	// +kubebuilder:validation:Optional
+	VPCPeeringIDSelector *v2.NamespacedSelector `json:"vpcPeeringIdSelector,omitempty" tf:"-"`
 }
 
 type VpcpeeringrouteObservation struct {
@@ -93,8 +120,17 @@ type VpcpeeringrouteParameters struct {
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// Remote network CIDR reachable through the peering connection (e.g., `10.0.2.0/24`).
 	// +kubebuilder:validation:Optional
@@ -109,12 +145,30 @@ type VpcpeeringrouteParameters struct {
 	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// ID of the VPC this peering route belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
+	// Reference to a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v2.NamespacedReference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v2.NamespacedSelector `json:"vpcIdSelector,omitempty" tf:"-"`
+
 	// ID of the VPC peering connection this route belongs to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Vpcpeering
 	// +kubebuilder:validation:Optional
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
+
+	// Reference to a Vpcpeering in arubacloud to populate vpcPeeringId.
+	// +kubebuilder:validation:Optional
+	VPCPeeringIDRef *v2.NamespacedReference `json:"vpcPeeringIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vpcpeering in arubacloud to populate vpcPeeringId.
+	// +kubebuilder:validation:Optional
+	VPCPeeringIDSelector *v2.NamespacedSelector `json:"vpcPeeringIdSelector,omitempty" tf:"-"`
 }
 
 // VpcpeeringrouteSpec defines the desired state of Vpcpeeringroute
@@ -156,10 +210,7 @@ type Vpcpeeringroute struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.localNetworkAddress) || (has(self.initProvider) && has(self.initProvider.localNetworkAddress))",message="spec.forProvider.localNetworkAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.remoteNetworkAddress) || (has(self.initProvider) && has(self.initProvider.remoteNetworkAddress))",message="spec.forProvider.remoteNetworkAddress is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcPeeringId) || (has(self.initProvider) && has(self.initProvider.vpcPeeringId))",message="spec.forProvider.vpcPeeringId is a required parameter"
 	Spec   VpcpeeringrouteSpec   `json:"spec"`
 	Status VpcpeeringrouteStatus `json:"status,omitempty"`
 }

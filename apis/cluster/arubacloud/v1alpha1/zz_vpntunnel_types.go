@@ -121,7 +121,16 @@ type IPConfigurationsSubnetInitParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the subnet.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Subnet
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Subnet in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Subnet in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type IPConfigurationsSubnetObservation struct {
@@ -144,15 +153,33 @@ type IPConfigurationsSubnetParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the subnet.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Subnet
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Subnet in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Subnet in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type IPConfigurationsVPCInitParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the VPC.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type IPConfigurationsVPCObservation struct {
@@ -166,8 +193,17 @@ type IPConfigurationsVPCParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the VPC.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type IkeInitParameters struct {
@@ -322,7 +358,16 @@ type PublicIPInitParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the elastic public IP.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Elasticip
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Elasticip in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type PublicIPObservation struct {
@@ -336,8 +381,17 @@ type PublicIPParameters struct {
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the elastic public IP.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Elasticip
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
+
+	// Reference to a Elasticip in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDRef *v2.Reference `json:"idRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate id.
+	// +kubebuilder:validation:Optional
+	IDSelector *v2.Selector `json:"idSelector,omitempty" tf:"-"`
 }
 
 type VPNClientSettingsInitParameters struct {
@@ -404,7 +458,16 @@ type VpntunnelInitParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Configuration properties for the VPN tunnel. (see below for nested schema)
 	Properties *VpntunnelPropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
@@ -465,8 +528,17 @@ type VpntunnelParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Configuration properties for the VPN tunnel. (see below for nested schema)
 	// +kubebuilder:validation:Optional
@@ -589,7 +661,6 @@ type Vpntunnel struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.properties) || (has(self.initProvider) && has(self.initProvider.properties))",message="spec.forProvider.properties is a required parameter"
 	Spec   VpntunnelSpec   `json:"spec"`
 	Status VpntunnelStatus `json:"status,omitempty"`

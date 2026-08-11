@@ -18,6 +18,8 @@ const (
 	tfBlockStorage  = "arubacloud_blockstorage"
 	tfSecurityGroup = "arubacloud_securitygroup"
 	tfBackup        = "arubacloud_backup"
+	tfVPCPeering    = "arubacloud_vpcpeering"
+	tfVPNTunnel     = "arubacloud_vpntunnel"
 )
 
 // Configure configures ArubaCloud resources for the namespaced provider.
@@ -32,6 +34,12 @@ func Configure(p *ujconfig.Provider) {
 	configureBackup(p)
 	configureRestore(p)
 	configureCloudServer(p)
+	configureSecurityGroup(p)
+	configureSecurityRule(p)
+	configureVPCPeering(p)
+	configureVPCPeeringRoute(p)
+	configureVPNTunnel(p)
+	configureVPNRoute(p)
 }
 
 func configureProject(p *ujconfig.Provider) {
@@ -128,5 +136,58 @@ func configureRestore(p *ujconfig.Provider) {
 		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
 		r.References["backup_id"] = ujconfig.Reference{TerraformName: tfBackup}
 		r.References["volume_id"] = ujconfig.Reference{TerraformName: tfBlockStorage}
+	})
+}
+
+func configureSecurityGroup(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfSecurityGroup, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["vpc_id"] = ujconfig.Reference{TerraformName: tfVPC}
+	})
+}
+
+func configureSecurityRule(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_securityrule", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["vpc_id"] = ujconfig.Reference{TerraformName: tfVPC}
+		r.References["security_group_id"] = ujconfig.Reference{TerraformName: tfSecurityGroup}
+	})
+}
+
+func configureVPCPeering(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfVPCPeering, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["vpc_id"] = ujconfig.Reference{TerraformName: tfVPC}
+		r.References["peer_vpc"] = ujconfig.Reference{TerraformName: tfVPC}
+	})
+}
+
+func configureVPCPeeringRoute(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_vpcpeeringroute", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["vpc_id"] = ujconfig.Reference{TerraformName: tfVPC}
+		r.References["vpc_peering_id"] = ujconfig.Reference{TerraformName: tfVPCPeering}
+	})
+}
+
+func configureVPNTunnel(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfVPNTunnel, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["properties.ip_configurations.vpc.id"] = ujconfig.Reference{
+			TerraformName: tfVPC,
+		}
+		r.References["properties.ip_configurations.subnet.id"] = ujconfig.Reference{
+			TerraformName: tfSubnet,
+		}
+		r.References["properties.ip_configurations.public_ip.id"] = ujconfig.Reference{
+			TerraformName: tfElasticIP,
+		}
+	})
+}
+
+func configureVPNRoute(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_vpnroute", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["vpn_tunnel_id"] = ujconfig.Reference{TerraformName: tfVPNTunnel}
 	})
 }

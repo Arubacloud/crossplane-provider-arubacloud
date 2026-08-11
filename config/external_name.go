@@ -118,16 +118,16 @@ func vpcPeeringExternalName() config.ExternalName {
 }
 
 // vpcPeeringRouteExternalName handles arubacloud_vpcpeeringroute.
-// Import format REQUIRES VERIFICATION — assumed project_id/vpc_id/peering_id/route_id.
+// Import format: project_id/vpc_id/vpc_peering_id/route_id (verified from generated types).
 func vpcPeeringRouteExternalName() config.ExternalName {
 	e := config.IdentifierFromProvider
 	e.GetExternalNameFn = leafIDFromSlash(3)
 	e.GetIDFn = func(_ context.Context, externalName string, parameters map[string]any, _ map[string]any) (string, error) {
 		projectID, _ := parameters["project_id"].(string)
 		vpcID, _ := parameters["vpc_id"].(string)
-		peeringID, _ := parameters["peering_id"].(string)
+		peeringID, _ := parameters["vpc_peering_id"].(string)
 		if projectID == "" || vpcID == "" || peeringID == "" {
-			return "", fmt.Errorf("project_id, vpc_id, and peering_id are required (REQUIRES VERIFICATION)")
+			return "", fmt.Errorf("project_id, vpc_id, and vpc_peering_id are required for VPC peering route")
 		}
 		return projectID + "/" + vpcID + "/" + peeringID + "/" + externalName, nil
 	}

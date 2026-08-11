@@ -11,7 +11,9 @@ spec:
   forProvider:
     location: example-location
     name: example-vpc-peering
-    peerVpc: peer-vpc-id
+    peerVpcSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - tag1
     - tag2

@@ -1,0 +1,25 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: SecurityRule
+metadata:
+  name: allow-https
+spec:
+  forProvider:
+    name: allow-https
+    location: ITBG-Bergamo
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+    vpcIdRef:
+      name: main-vpc
+    securityGroupIdRef:
+      name: web-sg
+    properties:
+      direction: Ingress
+      protocol: TCP
+      port: "443"
+      target:
+        kind: IP
+        value: "0.0.0.0/0"
+  providerConfigRef:
+    name: default
