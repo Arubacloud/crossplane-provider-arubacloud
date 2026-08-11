@@ -1,0 +1,35 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: ContainerRegistry
+metadata:
+  name: my-registry
+spec:
+  forProvider:
+    name: my-registry
+    location: ITBG-Bergamo
+    billingPeriod: Hour
+    tags:
+      - crossplane
+
+    projectIdRef:
+      name: my-project
+
+    network:
+      publicIpUriRefRef:
+        name: web-eip
+      vpcUriRefRef:
+        name: main-vpc
+      subnetUriRefRef:
+        name: private-subnet
+      securityGroupUriRefRef:
+        name: web-sg
+
+    storage:
+      blockStorageUriRefRef:
+        name: boot-vol
+
+    settings:
+      adminUser: registry-admin
+      concurrentUsersFlavor: REG2A4
+
+  providerConfigRef:
+    name: default

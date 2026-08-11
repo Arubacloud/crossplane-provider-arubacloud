@@ -410,6 +410,241 @@ func (mg *Cloudserver) ResolveReferences(ctx context.Context, c client.Reader) e
 	return nil
 }
 
+// ResolveReferences of this Containerregistry.
+func (mg *Containerregistry) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPINamespacedResolver(c, mg)
+
+	var rsp reference.NamespacedResolutionResponse
+	var err error
+
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.PublicIPURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.PublicIPURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.PublicIPURIRefSelector,
+			To: reference.To{
+				List:    &ElasticipList{},
+				Managed: &Elasticip{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.PublicIPURIRef")
+		}
+		mg.Spec.ForProvider.Network.PublicIPURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.PublicIPURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.SecurityGroupURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.SecurityGroupURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.SecurityGroupURIRefSelector,
+			To: reference.To{
+				List:    &SecuritygroupList{},
+				Managed: &Securitygroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.SecurityGroupURIRef")
+		}
+		mg.Spec.ForProvider.Network.SecurityGroupURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.SecurityGroupURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.SubnetURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.SubnetURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.SubnetURIRefSelector,
+			To: reference.To{
+				List:    &SubnetList{},
+				Managed: &Subnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.SubnetURIRef")
+		}
+		mg.Spec.ForProvider.Network.SubnetURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.SubnetURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.VPCURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.VPCURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.VPCURIRefSelector,
+			To: reference.To{
+				List:    &VPCList{},
+				Managed: &VPC{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.VPCURIRef")
+		}
+		mg.Spec.ForProvider.Network.VPCURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.VPCURIRefRef = rsp.ResolvedReference
+
+	}
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.ForProvider.ProjectIDRef,
+		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &ProjectList{},
+			Managed: &Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProjectID")
+	}
+	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
+
+	if mg.Spec.ForProvider.Storage != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Storage.BlockStorageURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Storage.BlockStorageURIRefRef,
+			Selector:     mg.Spec.ForProvider.Storage.BlockStorageURIRefSelector,
+			To: reference.To{
+				List:    &BlockstorageList{},
+				Managed: &Blockstorage{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Storage.BlockStorageURIRef")
+		}
+		mg.Spec.ForProvider.Storage.BlockStorageURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Storage.BlockStorageURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.PublicIPURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.PublicIPURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.PublicIPURIRefSelector,
+			To: reference.To{
+				List:    &ElasticipList{},
+				Managed: &Elasticip{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.PublicIPURIRef")
+		}
+		mg.Spec.InitProvider.Network.PublicIPURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.PublicIPURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.SecurityGroupURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.SecurityGroupURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.SecurityGroupURIRefSelector,
+			To: reference.To{
+				List:    &SecuritygroupList{},
+				Managed: &Securitygroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.SecurityGroupURIRef")
+		}
+		mg.Spec.InitProvider.Network.SecurityGroupURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.SecurityGroupURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.SubnetURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.SubnetURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.SubnetURIRefSelector,
+			To: reference.To{
+				List:    &SubnetList{},
+				Managed: &Subnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.SubnetURIRef")
+		}
+		mg.Spec.InitProvider.Network.SubnetURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.SubnetURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.VPCURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.VPCURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.VPCURIRefSelector,
+			To: reference.To{
+				List:    &VPCList{},
+				Managed: &VPC{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.VPCURIRef")
+		}
+		mg.Spec.InitProvider.Network.VPCURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.VPCURIRefRef = rsp.ResolvedReference
+
+	}
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.InitProvider.ProjectIDRef,
+		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &ProjectList{},
+			Managed: &Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ProjectID")
+	}
+	mg.Spec.InitProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ProjectIDRef = rsp.ResolvedReference
+
+	if mg.Spec.InitProvider.Storage != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Storage.BlockStorageURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Storage.BlockStorageURIRefRef,
+			Selector:     mg.Spec.InitProvider.Storage.BlockStorageURIRefSelector,
+			To: reference.To{
+				List:    &BlockstorageList{},
+				Managed: &Blockstorage{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Storage.BlockStorageURIRef")
+		}
+		mg.Spec.InitProvider.Storage.BlockStorageURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Storage.BlockStorageURIRefRef = rsp.ResolvedReference
+
+	}
+
+	return nil
+}
+
 // ResolveReferences of this Elasticip.
 func (mg *Elasticip) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPINamespacedResolver(c, mg)
@@ -434,6 +669,164 @@ func (mg *Elasticip) ResolveReferences(ctx context.Context, c client.Reader) err
 	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
 	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
 
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.InitProvider.ProjectIDRef,
+		Selector:     mg.Spec.InitProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &ProjectList{},
+			Managed: &Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.InitProvider.ProjectID")
+	}
+	mg.Spec.InitProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.InitProvider.ProjectIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this Kaas.
+func (mg *Kaas) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPINamespacedResolver(c, mg)
+
+	var rsp reference.NamespacedResolutionResponse
+	var err error
+
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.SecurityGroupName),
+			Extract:      resource.ExtractParamPath("name", false),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.SecurityGroupNameRef,
+			Selector:     mg.Spec.ForProvider.Network.SecurityGroupNameSelector,
+			To: reference.To{
+				List:    &SecuritygroupList{},
+				Managed: &Securitygroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.SecurityGroupName")
+		}
+		mg.Spec.ForProvider.Network.SecurityGroupName = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.SecurityGroupNameRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.SubnetURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.SubnetURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.SubnetURIRefSelector,
+			To: reference.To{
+				List:    &SubnetList{},
+				Managed: &Subnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.SubnetURIRef")
+		}
+		mg.Spec.ForProvider.Network.SubnetURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.SubnetURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.ForProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Network.VPCURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.ForProvider.Network.VPCURIRefRef,
+			Selector:     mg.Spec.ForProvider.Network.VPCURIRefSelector,
+			To: reference.To{
+				List:    &VPCList{},
+				Managed: &VPC{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.ForProvider.Network.VPCURIRef")
+		}
+		mg.Spec.ForProvider.Network.VPCURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.ForProvider.Network.VPCURIRefRef = rsp.ResolvedReference
+
+	}
+	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.ProjectID),
+		Extract:      reference.ExternalName(),
+		Namespace:    mg.GetNamespace(),
+		Reference:    mg.Spec.ForProvider.ProjectIDRef,
+		Selector:     mg.Spec.ForProvider.ProjectIDSelector,
+		To: reference.To{
+			List:    &ProjectList{},
+			Managed: &Project{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.ProjectID")
+	}
+	mg.Spec.ForProvider.ProjectID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.ProjectIDRef = rsp.ResolvedReference
+
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.SecurityGroupName),
+			Extract:      resource.ExtractParamPath("name", false),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.SecurityGroupNameRef,
+			Selector:     mg.Spec.InitProvider.Network.SecurityGroupNameSelector,
+			To: reference.To{
+				List:    &SecuritygroupList{},
+				Managed: &Securitygroup{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.SecurityGroupName")
+		}
+		mg.Spec.InitProvider.Network.SecurityGroupName = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.SecurityGroupNameRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.SubnetURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.SubnetURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.SubnetURIRefSelector,
+			To: reference.To{
+				List:    &SubnetList{},
+				Managed: &Subnet{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.SubnetURIRef")
+		}
+		mg.Spec.InitProvider.Network.SubnetURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.SubnetURIRefRef = rsp.ResolvedReference
+
+	}
+	if mg.Spec.InitProvider.Network != nil {
+		rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
+			CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.Network.VPCURIRef),
+			Extract:      resource.ExtractParamPath("uri", true),
+			Namespace:    mg.GetNamespace(),
+			Reference:    mg.Spec.InitProvider.Network.VPCURIRefRef,
+			Selector:     mg.Spec.InitProvider.Network.VPCURIRefSelector,
+			To: reference.To{
+				List:    &VPCList{},
+				Managed: &VPC{},
+			},
+		})
+		if err != nil {
+			return errors.Wrap(err, "mg.Spec.InitProvider.Network.VPCURIRef")
+		}
+		mg.Spec.InitProvider.Network.VPCURIRef = reference.ToPtrValue(rsp.ResolvedValue)
+		mg.Spec.InitProvider.Network.VPCURIRefRef = rsp.ResolvedReference
+
+	}
 	rsp, err = r.Resolve(ctx, reference.NamespacedResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.InitProvider.ProjectID),
 		Extract:      reference.ExternalName(),

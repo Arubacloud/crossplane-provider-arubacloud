@@ -1174,6 +1174,16 @@ func (in *ContainerregistryInitParameters) DeepCopyInto(out *ContainerregistryIn
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings
 		*out = new(ContainerregistrySettingsInitParameters)
@@ -1252,20 +1262,60 @@ func (in *ContainerregistryNetworkInitParameters) DeepCopyInto(out *Containerreg
 		*out = new(string)
 		**out = **in
 	}
+	if in.PublicIPURIRefRef != nil {
+		in, out := &in.PublicIPURIRefRef, &out.PublicIPURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PublicIPURIRefSelector != nil {
+		in, out := &in.PublicIPURIRefSelector, &out.PublicIPURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecurityGroupURIRef != nil {
 		in, out := &in.SecurityGroupURIRef, &out.SecurityGroupURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.SecurityGroupURIRefRef != nil {
+		in, out := &in.SecurityGroupURIRefRef, &out.SecurityGroupURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupURIRefSelector != nil {
+		in, out := &in.SecurityGroupURIRefSelector, &out.SecurityGroupURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -1322,20 +1372,60 @@ func (in *ContainerregistryNetworkParameters) DeepCopyInto(out *Containerregistr
 		*out = new(string)
 		**out = **in
 	}
+	if in.PublicIPURIRefRef != nil {
+		in, out := &in.PublicIPURIRefRef, &out.PublicIPURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.PublicIPURIRefSelector != nil {
+		in, out := &in.PublicIPURIRefSelector, &out.PublicIPURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SecurityGroupURIRef != nil {
 		in, out := &in.SecurityGroupURIRef, &out.SecurityGroupURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.SecurityGroupURIRefRef != nil {
+		in, out := &in.SecurityGroupURIRefRef, &out.SecurityGroupURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupURIRefSelector != nil {
+		in, out := &in.SecurityGroupURIRefSelector, &out.SecurityGroupURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -1452,6 +1542,16 @@ func (in *ContainerregistryParameters) DeepCopyInto(out *ContainerregistryParame
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings
@@ -1609,6 +1709,16 @@ func (in *ContainerregistryStorageInitParameters) DeepCopyInto(out *Containerreg
 		*out = new(string)
 		**out = **in
 	}
+	if in.BlockStorageURIRefRef != nil {
+		in, out := &in.BlockStorageURIRefRef, &out.BlockStorageURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BlockStorageURIRefSelector != nil {
+		in, out := &in.BlockStorageURIRefSelector, &out.BlockStorageURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 }
 
 // DeepCopy is an autogenerated deepcopy function, copying the receiver, creating a new ContainerregistryStorageInitParameters.
@@ -1648,6 +1758,16 @@ func (in *ContainerregistryStorageParameters) DeepCopyInto(out *Containerregistr
 		in, out := &in.BlockStorageURIRef, &out.BlockStorageURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.BlockStorageURIRefRef != nil {
+		in, out := &in.BlockStorageURIRefRef, &out.BlockStorageURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.BlockStorageURIRefSelector != nil {
+		in, out := &in.BlockStorageURIRefSelector, &out.BlockStorageURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -4367,6 +4487,16 @@ func (in *KaasInitParameters) DeepCopyInto(out *KaasInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings
 		*out = new(KaasSettingsInitParameters)
@@ -4450,15 +4580,45 @@ func (in *KaasNetworkInitParameters) DeepCopyInto(out *KaasNetworkInitParameters
 		*out = new(string)
 		**out = **in
 	}
+	if in.SecurityGroupNameRef != nil {
+		in, out := &in.SecurityGroupNameRef, &out.SecurityGroupNameRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupNameSelector != nil {
+		in, out := &in.SecurityGroupNameSelector, &out.SecurityGroupNameSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -4530,15 +4690,45 @@ func (in *KaasNetworkParameters) DeepCopyInto(out *KaasNetworkParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SecurityGroupNameRef != nil {
+		in, out := &in.SecurityGroupNameRef, &out.SecurityGroupNameRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SecurityGroupNameSelector != nil {
+		in, out := &in.SecurityGroupNameSelector, &out.SecurityGroupNameSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.SubnetURIRef != nil {
 		in, out := &in.SubnetURIRef, &out.SubnetURIRef
 		*out = new(string)
 		**out = **in
 	}
+	if in.SubnetURIRefRef != nil {
+		in, out := &in.SubnetURIRefRef, &out.SubnetURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.SubnetURIRefSelector != nil {
+		in, out := &in.SubnetURIRefSelector, &out.SubnetURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
+	}
 	if in.VPCURIRef != nil {
 		in, out := &in.VPCURIRef, &out.VPCURIRef
 		*out = new(string)
 		**out = **in
+	}
+	if in.VPCURIRefRef != nil {
+		in, out := &in.VPCURIRefRef, &out.VPCURIRefRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.VPCURIRefSelector != nil {
+		in, out := &in.VPCURIRefSelector, &out.VPCURIRefSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 }
 
@@ -4655,6 +4845,16 @@ func (in *KaasParameters) DeepCopyInto(out *KaasParameters) {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
 		**out = **in
+	}
+	if in.ProjectIDRef != nil {
+		in, out := &in.ProjectIDRef, &out.ProjectIDRef
+		*out = new(v2.NamespacedReference)
+		(*in).DeepCopyInto(*out)
+	}
+	if in.ProjectIDSelector != nil {
+		in, out := &in.ProjectIDSelector, &out.ProjectIDSelector
+		*out = new(v2.NamespacedSelector)
+		(*in).DeepCopyInto(*out)
 	}
 	if in.Settings != nil {
 		in, out := &in.Settings, &out.Settings

@@ -32,7 +32,16 @@ type ContainerregistryInitParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Registry configuration settings. Required because admin_user is mandatory. (see below for nested schema)
 	Settings *ContainerregistrySettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
@@ -53,19 +62,59 @@ type ContainerregistryNetworkInitParameters struct {
 
 	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
 	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Elasticip
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
+
+	// Reference to a Elasticip in arubacloud to populate publicIpUriRef.
+	// +kubebuilder:validation:Optional
+	PublicIPURIRefRef *v2.NamespacedReference `json:"publicIpUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate publicIpUriRef.
+	// +kubebuilder:validation:Optional
+	PublicIPURIRefSelector *v2.NamespacedSelector `json:"publicIpUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
 	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Securitygroup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
+
+	// Reference to a Securitygroup in arubacloud to populate securityGroupUriRef.
+	// +kubebuilder:validation:Optional
+	SecurityGroupURIRefRef *v2.NamespacedReference `json:"securityGroupUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Securitygroup in arubacloud to populate securityGroupUriRef.
+	// +kubebuilder:validation:Optional
+	SecurityGroupURIRefSelector *v2.NamespacedSelector `json:"securityGroupUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
 	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Subnet
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
+
+	// Reference to a Subnet in arubacloud to populate subnetUriRef.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefRef *v2.NamespacedReference `json:"subnetUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Subnet in arubacloud to populate subnetUriRef.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefSelector *v2.NamespacedSelector `json:"subnetUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
 	// URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefRef *v2.NamespacedReference `json:"vpcUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefSelector *v2.NamespacedSelector `json:"vpcUriRefSelector,omitempty" tf:"-"`
 }
 
 type ContainerregistryNetworkObservation struct {
@@ -91,23 +140,63 @@ type ContainerregistryNetworkParameters struct {
 
 	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
 	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Elasticip
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	PublicIPURIRef *string `json:"publicIpUriRef" tf:"public_ip_uri_ref,omitempty"`
+	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
+
+	// Reference to a Elasticip in arubacloud to populate publicIpUriRef.
+	// +kubebuilder:validation:Optional
+	PublicIPURIRefRef *v2.NamespacedReference `json:"publicIpUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate publicIpUriRef.
+	// +kubebuilder:validation:Optional
+	PublicIPURIRefSelector *v2.NamespacedSelector `json:"publicIpUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
 	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Securitygroup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	SecurityGroupURIRef *string `json:"securityGroupUriRef" tf:"security_group_uri_ref,omitempty"`
+	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
+
+	// Reference to a Securitygroup in arubacloud to populate securityGroupUriRef.
+	// +kubebuilder:validation:Optional
+	SecurityGroupURIRefRef *v2.NamespacedReference `json:"securityGroupUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Securitygroup in arubacloud to populate securityGroupUriRef.
+	// +kubebuilder:validation:Optional
+	SecurityGroupURIRefSelector *v2.NamespacedSelector `json:"securityGroupUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
 	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Subnet
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
+	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
+
+	// Reference to a Subnet in arubacloud to populate subnetUriRef.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefRef *v2.NamespacedReference `json:"subnetUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Subnet in arubacloud to populate subnetUriRef.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefSelector *v2.NamespacedSelector `json:"subnetUriRefSelector,omitempty" tf:"-"`
 
 	// (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
 	// URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
+	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefRef *v2.NamespacedReference `json:"vpcUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefSelector *v2.NamespacedSelector `json:"vpcUriRefSelector,omitempty" tf:"-"`
 }
 
 type ContainerregistryObservation struct {
@@ -176,8 +265,17 @@ type ContainerregistryParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Registry configuration settings. Required because admin_user is mandatory. (see below for nested schema)
 	// +kubebuilder:validation:Optional
@@ -237,7 +335,17 @@ type ContainerregistryStorageInitParameters struct {
 
 	// (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
 	// URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	BlockStorageURIRef *string `json:"blockStorageUriRef,omitempty" tf:"block_storage_uri_ref,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate blockStorageUriRef.
+	// +kubebuilder:validation:Optional
+	BlockStorageURIRefRef *v2.NamespacedReference `json:"blockStorageUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate blockStorageUriRef.
+	// +kubebuilder:validation:Optional
+	BlockStorageURIRefSelector *v2.NamespacedSelector `json:"blockStorageUriRefSelector,omitempty" tf:"-"`
 }
 
 type ContainerregistryStorageObservation struct {
@@ -251,8 +359,18 @@ type ContainerregistryStorageParameters struct {
 
 	// (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
 	// URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	BlockStorageURIRef *string `json:"blockStorageUriRef" tf:"block_storage_uri_ref,omitempty"`
+	BlockStorageURIRef *string `json:"blockStorageUriRef,omitempty" tf:"block_storage_uri_ref,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate blockStorageUriRef.
+	// +kubebuilder:validation:Optional
+	BlockStorageURIRefRef *v2.NamespacedReference `json:"blockStorageUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate blockStorageUriRef.
+	// +kubebuilder:validation:Optional
+	BlockStorageURIRefSelector *v2.NamespacedSelector `json:"blockStorageUriRefSelector,omitempty" tf:"-"`
 }
 
 // ContainerregistrySpec defines the desired state of Containerregistry
@@ -294,7 +412,6 @@ type Containerregistry struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.settings) || (has(self.initProvider) && has(self.initProvider.settings))",message="spec.forProvider.settings is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
 	Spec   ContainerregistrySpec   `json:"spec"`
