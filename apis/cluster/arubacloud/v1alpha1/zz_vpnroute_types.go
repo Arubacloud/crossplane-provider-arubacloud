@@ -25,7 +25,16 @@ type VpnrouteInitParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Routing properties for the VPN route. (see below for nested schema)
 	Properties *VpnroutePropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
@@ -40,7 +49,16 @@ type VpnrouteInitParameters struct {
 
 	// (String) ID of the VPN tunnel this route is associated with.
 	// ID of the VPN tunnel this route is associated with.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Vpntunnel
 	VPNTunnelID *string `json:"vpnTunnelId,omitempty" tf:"vpn_tunnel_id,omitempty"`
+
+	// Reference to a Vpntunnel in arubacloud to populate vpnTunnelId.
+	// +kubebuilder:validation:Optional
+	VPNTunnelIDRef *v2.Reference `json:"vpnTunnelIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vpntunnel in arubacloud to populate vpnTunnelId.
+	// +kubebuilder:validation:Optional
+	VPNTunnelIDSelector *v2.Selector `json:"vpnTunnelIdSelector,omitempty" tf:"-"`
 }
 
 type VpnrouteObservation struct {
@@ -94,8 +112,17 @@ type VpnrouteParameters struct {
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Routing properties for the VPN route. (see below for nested schema)
 	// +kubebuilder:validation:Optional
@@ -113,8 +140,17 @@ type VpnrouteParameters struct {
 
 	// (String) ID of the VPN tunnel this route is associated with.
 	// ID of the VPN tunnel this route is associated with.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Vpntunnel
 	// +kubebuilder:validation:Optional
 	VPNTunnelID *string `json:"vpnTunnelId,omitempty" tf:"vpn_tunnel_id,omitempty"`
+
+	// Reference to a Vpntunnel in arubacloud to populate vpnTunnelId.
+	// +kubebuilder:validation:Optional
+	VPNTunnelIDRef *v2.Reference `json:"vpnTunnelIdRef,omitempty" tf:"-"`
+
+	// Selector for a Vpntunnel in arubacloud to populate vpnTunnelId.
+	// +kubebuilder:validation:Optional
+	VPNTunnelIDSelector *v2.Selector `json:"vpnTunnelIdSelector,omitempty" tf:"-"`
 }
 
 type VpnroutePropertiesInitParameters struct {
@@ -190,9 +226,7 @@ type Vpnroute struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.properties) || (has(self.initProvider) && has(self.initProvider.properties))",message="spec.forProvider.properties is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpnTunnelId) || (has(self.initProvider) && has(self.initProvider.vpnTunnelId))",message="spec.forProvider.vpnTunnelId is a required parameter"
 	Spec   VpnrouteSpec   `json:"spec"`
 	Status VpnrouteStatus `json:"status,omitempty"`
 }

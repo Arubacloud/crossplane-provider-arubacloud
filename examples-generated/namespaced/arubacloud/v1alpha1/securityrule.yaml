@@ -11,7 +11,9 @@ spec:
   forProvider:
     location: ITBG-Bergamo
     name: example-http-rule
-    projectId: example-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     properties:
       direction: Ingress
       port: "80"
@@ -19,8 +21,12 @@ spec:
       target:
         kind: Ip
         value: 0.0.0.0/0
-    securityGroupId: example-security-group-id
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - security
     - example
-    vpcId: example-vpc-id
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

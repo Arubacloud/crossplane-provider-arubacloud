@@ -25,11 +25,29 @@ type VpcpeeringInitParameters struct {
 
 	// (String) ID or URI of the remote peer VPC to connect to.
 	// ID or URI of the remote peer VPC to connect to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate peerVpc.
+	// +kubebuilder:validation:Optional
+	PeerVPCRef *v2.Reference `json:"peerVpcRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate peerVpc.
+	// +kubebuilder:validation:Optional
+	PeerVPCSelector *v2.Selector `json:"peerVpcSelector,omitempty" tf:"-"`
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -41,7 +59,16 @@ type VpcpeeringInitParameters struct {
 
 	// (String) ID of the local VPC initiating this peering connection.
 	// ID of the local VPC initiating this peering connection.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v2.Reference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v2.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 type VpcpeeringObservation struct {
@@ -96,13 +123,31 @@ type VpcpeeringParameters struct {
 
 	// (String) ID or URI of the remote peer VPC to connect to.
 	// ID or URI of the remote peer VPC to connect to.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
 
+	// Reference to a VPC in arubacloud to populate peerVpc.
+	// +kubebuilder:validation:Optional
+	PeerVPCRef *v2.Reference `json:"peerVpcRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate peerVpc.
+	// +kubebuilder:validation:Optional
+	PeerVPCSelector *v2.Selector `json:"peerVpcSelector,omitempty" tf:"-"`
+
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -116,8 +161,17 @@ type VpcpeeringParameters struct {
 
 	// (String) ID of the local VPC initiating this peering connection.
 	// ID of the local VPC initiating this peering connection.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.VPC
 	// +kubebuilder:validation:Optional
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDRef *v2.Reference `json:"vpcIdRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcId.
+	// +kubebuilder:validation:Optional
+	VPCIDSelector *v2.Selector `json:"vpcIdSelector,omitempty" tf:"-"`
 }
 
 // VpcpeeringSpec defines the desired state of Vpcpeering
@@ -158,9 +212,6 @@ type Vpcpeering struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.peerVpc) || (has(self.initProvider) && has(self.initProvider.peerVpc))",message="spec.forProvider.peerVpc is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
 	Spec   VpcpeeringSpec   `json:"spec"`
 	Status VpcpeeringStatus `json:"status,omitempty"`
 }
