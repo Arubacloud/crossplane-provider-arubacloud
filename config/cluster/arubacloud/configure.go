@@ -25,8 +25,14 @@ const (
 	tfVPNTunnel     = "arubacloud_vpntunnel"
 )
 
+// nameExtractor reads spec.forProvider.name from a referenced resource.
+// Used for KaaS security_group_name which references a SecurityGroup by display name.
+const nameExtractor = `github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("name",false)`
+
 // Configure configures ArubaCloud resources for the cluster-scoped provider.
 func Configure(p *ujconfig.Provider) {
+	configureKaaS(p)
+	configureContainerRegistry(p)
 	configureProject(p)
 	configureVPC(p)
 	configureSubnet(p)
@@ -216,5 +222,60 @@ func configureVPNRoute(p *ujconfig.Provider) {
 	p.AddResourceConfigurator("arubacloud_vpnroute", func(r *ujconfig.Resource) {
 		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
 		r.References["vpn_tunnel_id"] = ujconfig.Reference{TerraformName: tfVPNTunnel}
+	})
+}
+
+func configureKaaS(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_kaas", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["network.vpc_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfVPC,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.subnet_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfSubnet,
+			Extractor:     uriExtractor,
+		}
+		// security_group_name is a display-name reference (not URI).
+		// nameExtractor reads spec.forProvider.name from the SecurityGroup resource.
+		r.References["network.security_group_name"] = ujconfig.Reference{
+			TerraformName: tfSecurityGroup,
+			Extractor:     nameExtractor,
+		}
+		// kubeconfig is auto-mapped to connection details by Upjet (Sensitive field).
+		// Expose management_ip as an additional connection detail.
+		r.Sensitive.AdditionalConnectionDetailsFn = func(attr map[string]any) (map[string][]byte, error) {
+			conn := map[string][]byte{}
+			if ip, ok := attr["management_ip"].(string); ok && ip != "" {
+				conn["management_ip"] = []byte(ip)
+			}
+			return conn, nil
+		}
+	})
+}
+
+func configureContainerRegistry(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_containerregistry", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["network.public_ip_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfElasticIP,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.vpc_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfVPC,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.subnet_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfSubnet,
+			Extractor:     uriExtractor,
+		}
+		r.References["network.security_group_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfSecurityGroup,
+			Extractor:     uriExtractor,
+		}
+		r.References["storage.block_storage_uri_ref"] = ujconfig.Reference{
+			TerraformName: tfBlockStorage,
+			Extractor:     uriExtractor,
+		}
 	})
 }
