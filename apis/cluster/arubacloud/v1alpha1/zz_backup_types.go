@@ -29,7 +29,16 @@ type BackupInitParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// created, because the API does not apply retention_days changes in update requests.)
 	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
@@ -49,7 +58,16 @@ type BackupInitParameters struct {
 
 	// created.)
 	// ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDRef *v2.Reference `json:"volumeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDSelector *v2.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }
 
 type BackupObservation struct {
@@ -117,8 +135,17 @@ type BackupParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// created, because the API does not apply retention_days changes in update requests.)
 	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
@@ -142,8 +169,17 @@ type BackupParameters struct {
 
 	// created.)
 	// ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
 	// +kubebuilder:validation:Optional
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDRef *v2.Reference `json:"volumeIdRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeId.
+	// +kubebuilder:validation:Optional
+	VolumeIDSelector *v2.Selector `json:"volumeIdSelector,omitempty" tf:"-"`
 }
 
 // BackupSpec defines the desired state of Backup
@@ -184,9 +220,7 @@ type Backup struct {
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.volumeId) || (has(self.initProvider) && has(self.initProvider.volumeId))",message="spec.forProvider.volumeId is a required parameter"
 	Spec   BackupSpec   `json:"spec"`
 	Status BackupStatus `json:"status,omitempty"`
 }

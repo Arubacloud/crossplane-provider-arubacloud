@@ -11,4 +11,6 @@ spec:
   forProvider:
     location: ITBG-Bergamo
     name: example-snapshot
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

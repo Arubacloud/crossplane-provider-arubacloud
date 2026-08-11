@@ -29,7 +29,16 @@ type SnapshotInitParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -41,7 +50,17 @@ type SnapshotInitParameters struct {
 
 	// created.)
 	// URI of the block storage volume this snapshot is taken from. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeUri.
+	// +kubebuilder:validation:Optional
+	VolumeURIRef *v2.Reference `json:"volumeUriRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeUri.
+	// +kubebuilder:validation:Optional
+	VolumeURISelector *v2.Selector `json:"volumeUriSelector,omitempty" tf:"-"`
 }
 
 type SnapshotObservation struct {
@@ -101,8 +120,17 @@ type SnapshotParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
@@ -116,8 +144,18 @@ type SnapshotParameters struct {
 
 	// created.)
 	// URI of the block storage volume this snapshot is taken from. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate volumeUri.
+	// +kubebuilder:validation:Optional
+	VolumeURIRef *v2.Reference `json:"volumeUriRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate volumeUri.
+	// +kubebuilder:validation:Optional
+	VolumeURISelector *v2.Selector `json:"volumeUriSelector,omitempty" tf:"-"`
 }
 
 // SnapshotSpec defines the desired state of Snapshot
@@ -159,8 +197,6 @@ type Snapshot struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.volumeUri) || (has(self.initProvider) && has(self.initProvider.volumeUri))",message="spec.forProvider.volumeUri is a required parameter"
 	Spec   SnapshotSpec   `json:"spec"`
 	Status SnapshotStatus `json:"status,omitempty"`
 }

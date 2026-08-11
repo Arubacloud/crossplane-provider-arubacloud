@@ -17,6 +17,7 @@ const (
 	tfElasticIP     = "arubacloud_elasticip"
 	tfBlockStorage  = "arubacloud_blockstorage"
 	tfSecurityGroup = "arubacloud_securitygroup"
+	tfBackup        = "arubacloud_backup"
 )
 
 // Configure configures ArubaCloud resources for the namespaced provider.
@@ -27,6 +28,9 @@ func Configure(p *ujconfig.Provider) {
 	configureKeyPair(p)
 	configureElasticIP(p)
 	configureBlockStorage(p)
+	configureSnapshot(p)
+	configureBackup(p)
+	configureRestore(p)
 	configureCloudServer(p)
 }
 
@@ -99,5 +103,30 @@ func configureCloudServer(p *ujconfig.Provider) {
 			TerraformName: tfBlockStorage,
 			Extractor:     uriExtractor,
 		}
+	})
+}
+
+func configureSnapshot(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_snapshot", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["volume_uri"] = ujconfig.Reference{
+			TerraformName: tfBlockStorage,
+			Extractor:     uriExtractor,
+		}
+	})
+}
+
+func configureBackup(p *ujconfig.Provider) {
+	p.AddResourceConfigurator(tfBackup, func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["volume_id"] = ujconfig.Reference{TerraformName: tfBlockStorage}
+	})
+}
+
+func configureRestore(p *ujconfig.Provider) {
+	p.AddResourceConfigurator("arubacloud_restore", func(r *ujconfig.Resource) {
+		r.References["project_id"] = ujconfig.Reference{TerraformName: tfProject}
+		r.References["backup_id"] = ujconfig.Reference{TerraformName: tfBackup}
+		r.References["volume_id"] = ujconfig.Reference{TerraformName: tfBlockStorage}
 	})
 }

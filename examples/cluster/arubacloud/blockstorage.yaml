@@ -1,0 +1,18 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: BlockStorage
+metadata:
+  name: boot-vol
+spec:
+  forProvider:
+    name: boot-vol
+    location: ITBG-Bergamo
+    sizeGb: 50
+    billingPeriod: Hour
+    type: Standard
+    bootable: true
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+  providerConfigRef:
+    name: default
