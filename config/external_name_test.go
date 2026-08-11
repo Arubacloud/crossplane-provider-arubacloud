@@ -89,9 +89,9 @@ func TestSecurityGroupGetIDFn(t *testing.T) {
 func TestSecurityRuleGetIDFn(t *testing.T) {
 	e := securityRuleExternalName()
 	id, err := e.GetIDFn(context.Background(), "rule-xyz", map[string]any{
-		"project_id": testProjectID,
-		tfVPCIDKey:   testVPCID,
-		tfSGIDKey:    testSGID,
+		tfProjectIDKey: testProjectID,
+		tfVPCIDKey:     testVPCID,
+		tfSGIDKey:      testSGID,
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -117,7 +117,7 @@ func TestSnapshotGetExternalName(t *testing.T) {
 func TestSnapshotGetIDFn(t *testing.T) {
 	e := snapshotExternalName()
 	id, err := e.GetIDFn(context.Background(), "snap-xyz", map[string]any{
-		"project_id":     testProjectID,
+		tfProjectIDKey:   testProjectID,
 		"billing_period": "Hour",
 	}, nil)
 	if err != nil {
