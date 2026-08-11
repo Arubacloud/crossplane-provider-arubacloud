@@ -1,0 +1,14 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: DatabaseBackup
+metadata:
+  name: appdb-backup
+spec:
+  forProvider:
+    projectIdRef:
+      name: my-project
+    dbaasIdRef:
+      name: my-db-cluster
+    databaseRef:
+      name: appdb
+  providerConfigRef:
+    name: default

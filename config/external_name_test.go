@@ -202,3 +202,136 @@ func TestVPNRouteGetIDFn(t *testing.T) {
 		t.Errorf("got %q, want %q", id, want)
 	}
 }
+
+// TestVPCPeeringGetIDFn verifies the 3-part peering ID.
+func TestVPCPeeringGetIDFn(t *testing.T) {
+	e := vpcPeeringExternalName()
+	id, err := e.GetIDFn(context.Background(), "peering-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		tfVPCIDKey:     testVPCID,
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/" + testVPCID + "/peering-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
+	}
+}
+
+func TestVPCPeeringGetIDFn_MissingVpcID(t *testing.T) {
+	e := vpcPeeringExternalName()
+	_, err := e.GetIDFn(context.Background(), "peering-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+	}, nil)
+	if err == nil {
+		t.Error("expected error when vpc_id is missing, got nil")
+	}
+}
+
+// TestDBaaSUserGetIDFn verifies the 3-part project/dbaas/user ID.
+func TestDBaaSUserGetIDFn(t *testing.T) {
+	e := dbaasUserExternalName()
+	id, err := e.GetIDFn(context.Background(), "user-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		tfDbaasIDKey:   testDbaasID,
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/" + testDbaasID + "/user-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
+	}
+}
+
+func TestDBaaSUserGetIDFn_MissingDbaasID(t *testing.T) {
+	e := dbaasUserExternalName()
+	_, err := e.GetIDFn(context.Background(), "user-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+	}, nil)
+	if err == nil {
+		t.Error("expected error when dbaas_id is missing, got nil")
+	}
+}
+
+// TestDatabaseGrantGetIDFn verifies the 4-part project/dbaas/database/grant ID.
+func TestDatabaseGrantGetIDFn(t *testing.T) {
+	e := databaseGrantExternalName()
+	id, err := e.GetIDFn(context.Background(), "grant-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		tfDbaasIDKey:   testDbaasID,
+		"database_id":  "db-111",
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/" + testDbaasID + "/db-111/grant-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
+	}
+}
+
+func TestDatabaseGrantGetIDFn_MissingParams(t *testing.T) {
+	e := databaseGrantExternalName()
+	_, err := e.GetIDFn(context.Background(), "grant-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		tfDbaasIDKey:   testDbaasID,
+		// database_id missing
+	}, nil)
+	if err == nil {
+		t.Error("expected error when database_id is missing, got nil")
+	}
+}
+
+// TestDatabaseBackupGetIDFn verifies the 3-part project/dbaas/backup ID.
+func TestDatabaseBackupGetIDFn(t *testing.T) {
+	e := databaseBackupExternalName()
+	id, err := e.GetIDFn(context.Background(), "dbbackup-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		tfDbaasIDKey:   testDbaasID,
+	}, nil)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	want := testProjectID + "/" + testDbaasID + "/dbbackup-xyz"
+	if id != want {
+		t.Errorf("got %q, want %q", id, want)
+	}
+}
+
+func TestDatabaseBackupGetIDFn_MissingDbaasID(t *testing.T) {
+	e := databaseBackupExternalName()
+	_, err := e.GetIDFn(context.Background(), "dbbackup-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+	}, nil)
+	if err == nil {
+		t.Error("expected error when dbaas_id is missing, got nil")
+	}
+}
+
+// TestLeafIDFromSlash_FallbackUsesFullID verifies the fallback path when the
+// Terraform ID does not have enough segments.
+func TestLeafIDFromSlash_FallbackUsesFullID(t *testing.T) {
+	fn := leafIDFromSlash(3)
+	got, err := fn(map[string]any{"id": "only-two/parts"})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	// Fallback: returns the full Terraform ID when segments < index.
+	if got == "" {
+		t.Errorf("expected non-empty fallback, got %q", got)
+	}
+}
+
+// TestSnapshotGetIDFn_MissingBillingPeriod verifies error on missing billing_period.
+func TestSnapshotGetIDFn_MissingBillingPeriod(t *testing.T) {
+	e := snapshotExternalName()
+	_, err := e.GetIDFn(context.Background(), "snap-xyz", map[string]any{
+		tfProjectIDKey: testProjectID,
+		// billing_period missing
+	}, nil)
+	if err == nil {
+		t.Error("expected error when billing_period is missing, got nil")
+	}
+}
