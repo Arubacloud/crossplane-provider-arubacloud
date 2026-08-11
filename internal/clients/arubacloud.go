@@ -22,6 +22,13 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal arubacloud credentials as JSON"
+
+	// credential JSON keys
+	credKeyClientID        = "client_id"
+	credKeyClientSecret    = "client_secret"
+	credKeyBaseURL         = "base_url"
+	credKeyTokenIssuerURL  = "token_issuer_url"
+	credKeyResourceTimeout = "resource_timeout"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -54,17 +61,17 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		// The secret JSON must contain "client_id" and "client_secret".
 		// Optional: "base_url", "token_issuer_url", "resource_timeout".
 		ps.Configuration = map[string]any{
-			"client_id":     creds["client_id"],
-			"client_secret": creds["client_secret"],
+			credKeyClientID:     creds[credKeyClientID],
+			credKeyClientSecret: creds[credKeyClientSecret],
 		}
-		if v, ok := creds["base_url"]; ok && v != "" {
-			ps.Configuration["base_url"] = v
+		if v, ok := creds[credKeyBaseURL]; ok && v != "" {
+			ps.Configuration[credKeyBaseURL] = v
 		}
-		if v, ok := creds["token_issuer_url"]; ok && v != "" {
-			ps.Configuration["token_issuer_url"] = v
+		if v, ok := creds[credKeyTokenIssuerURL]; ok && v != "" {
+			ps.Configuration[credKeyTokenIssuerURL] = v
 		}
-		if v, ok := creds["resource_timeout"]; ok && v != "" {
-			ps.Configuration["resource_timeout"] = v
+		if v, ok := creds[credKeyResourceTimeout]; ok && v != "" {
+			ps.Configuration[credKeyResourceTimeout] = v
 		}
 		return ps, nil
 	}

@@ -11,11 +11,11 @@ func TestCredentialsParsing_RequiredFields(t *testing.T) {
 	if err := json.Unmarshal([]byte(raw), &creds); err != nil {
 		t.Fatalf("unmarshal failed: %v", err)
 	}
-	if creds["client_id"] != "cid" {
-		t.Errorf("client_id: got %q, want %q", creds["client_id"], "cid")
+	if creds[credKeyClientID] != "cid" {
+		t.Errorf("client_id: got %q, want %q", creds[credKeyClientID], "cid")
 	}
-	if creds["client_secret"] != "csec" {
-		t.Errorf("client_secret: got %q, want %q", creds["client_secret"], "csec")
+	if creds[credKeyClientSecret] != "csec" {
+		t.Errorf("client_secret: got %q, want %q", creds[credKeyClientSecret], "csec")
 	}
 }
 
@@ -32,9 +32,9 @@ func TestCredentialsParsing_OptionalFields(t *testing.T) {
 		t.Fatalf("unmarshal failed: %v", err)
 	}
 	tests := []struct{ key, want string }{
-		{"base_url", "https://api.example.com"},
-		{"token_issuer_url", "https://auth.example.com"},
-		{"resource_timeout", "60m"},
+		{credKeyBaseURL, "https://api.example.com"},
+		{credKeyTokenIssuerURL, "https://auth.example.com"},
+		{credKeyResourceTimeout, "60m"},
 	}
 	for _, tc := range tests {
 		if creds[tc.key] != tc.want {
@@ -49,7 +49,7 @@ func TestCredentialsParsing_OptionalFieldsAbsent(t *testing.T) {
 	if err := json.Unmarshal([]byte(raw), &creds); err != nil {
 		t.Fatalf("unmarshal failed: %v", err)
 	}
-	for _, key := range []string{"base_url", "token_issuer_url", "resource_timeout"} {
+	for _, key := range []string{credKeyBaseURL, credKeyTokenIssuerURL, credKeyResourceTimeout} {
 		if v, ok := creds[key]; ok && v != "" {
 			t.Errorf("expected %s to be absent or empty, got %q", key, v)
 		}
@@ -66,54 +66,54 @@ func TestCredentialsParsing_InvalidJSON(t *testing.T) {
 
 func TestTerraformSetupConfiguration(t *testing.T) {
 	creds := map[string]string{
-		"client_id":        "my-id",
-		"client_secret":    "my-secret",
-		"base_url":         "https://custom.api",
-		"token_issuer_url": "https://custom.auth",
-		"resource_timeout": "45m",
+		credKeyClientID:        "my-id",
+		credKeyClientSecret:    "my-secret",
+		credKeyBaseURL:         "https://custom.api",
+		credKeyTokenIssuerURL:  "https://custom.auth",
+		credKeyResourceTimeout: "45m",
 	}
 
 	cfg := map[string]any{
-		"client_id":     creds["client_id"],
-		"client_secret": creds["client_secret"],
+		credKeyClientID:     creds[credKeyClientID],
+		credKeyClientSecret: creds[credKeyClientSecret],
 	}
-	for _, key := range []string{"base_url", "token_issuer_url", "resource_timeout"} {
+	for _, key := range []string{credKeyBaseURL, credKeyTokenIssuerURL, credKeyResourceTimeout} {
 		if v := creds[key]; v != "" {
 			cfg[key] = v
 		}
 	}
 
-	if cfg["client_id"] != "my-id" {
-		t.Errorf("client_id: got %v", cfg["client_id"])
+	if cfg[credKeyClientID] != "my-id" {
+		t.Errorf("client_id: got %v", cfg[credKeyClientID])
 	}
-	if cfg["client_secret"] != "my-secret" {
-		t.Errorf("client_secret: got %v", cfg["client_secret"])
+	if cfg[credKeyClientSecret] != "my-secret" {
+		t.Errorf("client_secret: got %v", cfg[credKeyClientSecret])
 	}
-	if cfg["base_url"] != "https://custom.api" {
-		t.Errorf("base_url: got %v", cfg["base_url"])
+	if cfg[credKeyBaseURL] != "https://custom.api" {
+		t.Errorf("base_url: got %v", cfg[credKeyBaseURL])
 	}
-	if cfg["resource_timeout"] != "45m" {
-		t.Errorf("resource_timeout: got %v", cfg["resource_timeout"])
+	if cfg[credKeyResourceTimeout] != "45m" {
+		t.Errorf("resource_timeout: got %v", cfg[credKeyResourceTimeout])
 	}
 }
 
 func TestTerraformSetupConfiguration_EmptyOptionals(t *testing.T) {
 	creds := map[string]string{
-		"client_id":     "my-id",
-		"client_secret": "my-secret",
+		credKeyClientID:     "my-id",
+		credKeyClientSecret: "my-secret",
 	}
 
 	cfg := map[string]any{
-		"client_id":     creds["client_id"],
-		"client_secret": creds["client_secret"],
+		credKeyClientID:     creds[credKeyClientID],
+		credKeyClientSecret: creds[credKeyClientSecret],
 	}
-	for _, key := range []string{"base_url", "token_issuer_url", "resource_timeout"} {
+	for _, key := range []string{credKeyBaseURL, credKeyTokenIssuerURL, credKeyResourceTimeout} {
 		if v := creds[key]; v != "" {
 			cfg[key] = v
 		}
 	}
 
-	for _, key := range []string{"base_url", "token_issuer_url", "resource_timeout"} {
+	for _, key := range []string{credKeyBaseURL, credKeyTokenIssuerURL, credKeyResourceTimeout} {
 		if _, present := cfg[key]; present {
 			t.Errorf("expected %s to be absent from config when not set in credentials", key)
 		}

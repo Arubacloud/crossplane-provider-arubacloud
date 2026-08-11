@@ -259,9 +259,9 @@ func TestDBaaSUserGetIDFn_MissingDbaasID(t *testing.T) {
 func TestDatabaseGrantGetIDFn(t *testing.T) {
 	e := databaseGrantExternalName()
 	id, err := e.GetIDFn(context.Background(), "grant-xyz", map[string]any{
-		tfProjectIDKey:  testProjectID,
-		tfDbaasIDKey:    testDbaasID,
-		"database_id":   "db-111",
+		tfProjectIDKey: testProjectID,
+		tfDbaasIDKey:   testDbaasID,
+		"database_id":  "db-111",
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
