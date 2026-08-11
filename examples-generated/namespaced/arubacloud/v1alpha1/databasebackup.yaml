@@ -9,6 +9,10 @@ metadata:
   namespace: crossplane-system
 spec:
   forProvider:
-    database: example-database
+    databaseSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     location: example-location
-    projectId: example-project
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

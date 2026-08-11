@@ -11,7 +11,9 @@ spec:
   forProvider:
     location: example-location
     name: example-schedule-job
-    projectId: example-project
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     properties:
       enabled: true
       executeUntil: "2025-12-01T10:00:00Z"

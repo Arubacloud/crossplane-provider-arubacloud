@@ -1,0 +1,14 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: KMS
+metadata:
+  name: my-kms
+spec:
+  forProvider:
+    name: my-kms
+    billingPeriod: Hour
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+  providerConfigRef:
+    name: default

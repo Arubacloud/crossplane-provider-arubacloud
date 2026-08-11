@@ -17,7 +17,16 @@ type DbaasuserInitParameters struct {
 
 	// created.)
 	// ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Dbaas
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.Reference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.Selector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -25,7 +34,16 @@ type DbaasuserInitParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
 	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
@@ -66,8 +84,17 @@ type DbaasuserParameters struct {
 
 	// created.)
 	// ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Dbaas
 	// +kubebuilder:validation:Optional
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
+
+	// Reference to a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDRef *v2.Reference `json:"dbaasIdRef,omitempty" tf:"-"`
+
+	// Selector for a Dbaas in arubacloud to populate dbaasId.
+	// +kubebuilder:validation:Optional
+	DbaasIDSelector *v2.Selector `json:"dbaasIdSelector,omitempty" tf:"-"`
 
 	// only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -76,8 +103,17 @@ type DbaasuserParameters struct {
 
 	// created.)
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/cluster/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.Reference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.Selector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
 	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
@@ -126,9 +162,7 @@ type DbaasuserStatus struct {
 type Dbaasuser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.passwordSecretRef)",message="spec.forProvider.passwordSecretRef is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.username) || (has(self.initProvider) && has(self.initProvider.username))",message="spec.forProvider.username is a required parameter"
 	Spec   DbaasuserSpec   `json:"spec"`
 	Status DbaasuserStatus `json:"status,omitempty"`
