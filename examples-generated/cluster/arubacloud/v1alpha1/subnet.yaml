@@ -23,9 +23,13 @@ spec:
         routes:
         - address: 10.0.1.128/25
           gateway: 10.0.1.1
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - network
     - test
     type: Advanced
-    vpcId: your-vpc-id
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example

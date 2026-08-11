@@ -28,7 +28,16 @@ type CloudserverInitParameters struct {
 
 	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
 	// ID of the project that owns this resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	Settings *SettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
@@ -110,8 +119,17 @@ type CloudserverParameters struct {
 
 	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
 	// ID of the project that owns this resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Project
 	// +kubebuilder:validation:Optional
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// Reference to a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDRef *v2.NamespacedReference `json:"projectIdRef,omitempty" tf:"-"`
+
+	// Selector for a Project in arubacloud to populate projectId.
+	// +kubebuilder:validation:Optional
+	ProjectIDSelector *v2.NamespacedSelector `json:"projectIdSelector,omitempty" tf:"-"`
 
 	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	// +kubebuilder:validation:Optional
@@ -141,19 +159,59 @@ type NetworkInitParameters struct {
 
 	// (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP. Changing this value forces a new resource.
 	// URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Elasticip
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
+
+	// Reference to a Elasticip in arubacloud to populate elasticIpUriRef.
+	// +kubebuilder:validation:Optional
+	ElasticIPURIRefRef *v2.NamespacedReference `json:"elasticIpUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate elasticIpUriRef.
+	// +kubebuilder:validation:Optional
+	ElasticIPURIRefSelector *v2.NamespacedSelector `json:"elasticIpUriRefSelector,omitempty" tf:"-"`
 
 	// (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource. Changing this value forces a new resource.
 	// List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Securitygroup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs,omitempty" tf:"securitygroup_uri_refs,omitempty"`
+
+	// References to Securitygroup in arubacloud to populate securitygroupUriRefs.
+	// +kubebuilder:validation:Optional
+	SecuritygroupURIRefsRefs []v2.NamespacedReference `json:"securitygroupUriRefsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Securitygroup in arubacloud to populate securitygroupUriRefs.
+	// +kubebuilder:validation:Optional
+	SecuritygroupURIRefsSelector *v2.NamespacedSelector `json:"securitygroupUriRefsSelector,omitempty" tf:"-"`
 
 	// (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource. Changing this value forces a new resource.
 	// List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Subnet
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	SubnetURIRefs []*string `json:"subnetUriRefs,omitempty" tf:"subnet_uri_refs,omitempty"`
+
+	// References to Subnet in arubacloud to populate subnetUriRefs.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefsRefs []v2.NamespacedReference `json:"subnetUriRefsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Subnet in arubacloud to populate subnetUriRefs.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefsSelector *v2.NamespacedSelector `json:"subnetUriRefsSelector,omitempty" tf:"-"`
 
 	// (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource. Changing this value forces a new resource.
 	// URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefRef *v2.NamespacedReference `json:"vpcUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefSelector *v2.NamespacedSelector `json:"vpcUriRefSelector,omitempty" tf:"-"`
 }
 
 type NetworkObservation struct {
@@ -179,23 +237,63 @@ type NetworkParameters struct {
 
 	// (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP. Changing this value forces a new resource.
 	// URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Elasticip
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
+	// Reference to a Elasticip in arubacloud to populate elasticIpUriRef.
+	// +kubebuilder:validation:Optional
+	ElasticIPURIRefRef *v2.NamespacedReference `json:"elasticIpUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Elasticip in arubacloud to populate elasticIpUriRef.
+	// +kubebuilder:validation:Optional
+	ElasticIPURIRefSelector *v2.NamespacedSelector `json:"elasticIpUriRefSelector,omitempty" tf:"-"`
+
 	// (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource. Changing this value forces a new resource.
 	// List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Securitygroup
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs" tf:"securitygroup_uri_refs,omitempty"`
+	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs,omitempty" tf:"securitygroup_uri_refs,omitempty"`
+
+	// References to Securitygroup in arubacloud to populate securitygroupUriRefs.
+	// +kubebuilder:validation:Optional
+	SecuritygroupURIRefsRefs []v2.NamespacedReference `json:"securitygroupUriRefsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Securitygroup in arubacloud to populate securitygroupUriRefs.
+	// +kubebuilder:validation:Optional
+	SecuritygroupURIRefsSelector *v2.NamespacedSelector `json:"securitygroupUriRefsSelector,omitempty" tf:"-"`
 
 	// (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource. Changing this value forces a new resource.
 	// List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Subnet
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	SubnetURIRefs []*string `json:"subnetUriRefs" tf:"subnet_uri_refs,omitempty"`
+	SubnetURIRefs []*string `json:"subnetUriRefs,omitempty" tf:"subnet_uri_refs,omitempty"`
+
+	// References to Subnet in arubacloud to populate subnetUriRefs.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefsRefs []v2.NamespacedReference `json:"subnetUriRefsRefs,omitempty" tf:"-"`
+
+	// Selector for a list of Subnet in arubacloud to populate subnetUriRefs.
+	// +kubebuilder:validation:Optional
+	SubnetURIRefsSelector *v2.NamespacedSelector `json:"subnetUriRefsSelector,omitempty" tf:"-"`
 
 	// (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource. Changing this value forces a new resource.
 	// URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.VPC
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
+	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
+
+	// Reference to a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefRef *v2.NamespacedReference `json:"vpcUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a VPC in arubacloud to populate vpcUriRef.
+	// +kubebuilder:validation:Optional
+	VPCURIRefSelector *v2.NamespacedSelector `json:"vpcUriRefSelector,omitempty" tf:"-"`
 }
 
 type SettingsInitParameters struct {
@@ -206,7 +304,17 @@ type SettingsInitParameters struct {
 
 	// (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource. Changing this value forces a new resource.
 	// URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Keypair
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	KeyPairURIRef *string `json:"keyPairUriRef,omitempty" tf:"key_pair_uri_ref,omitempty"`
+
+	// Reference to a Keypair in arubacloud to populate keyPairUriRef.
+	// +kubebuilder:validation:Optional
+	KeyPairURIRefRef *v2.NamespacedReference `json:"keyPairUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Keypair in arubacloud to populate keyPairUriRef.
+	// +kubebuilder:validation:Optional
+	KeyPairURIRefSelector *v2.NamespacedSelector `json:"keyPairUriRefSelector,omitempty" tf:"-"`
 
 	// Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses. Changing this value forces a new resource.
 	// Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses. Changing this value forces a new resource.
@@ -233,8 +341,18 @@ type SettingsParameters struct {
 
 	// (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource. Changing this value forces a new resource.
 	// URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource. Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Keypair
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
 	KeyPairURIRef *string `json:"keyPairUriRef,omitempty" tf:"key_pair_uri_ref,omitempty"`
+
+	// Reference to a Keypair in arubacloud to populate keyPairUriRef.
+	// +kubebuilder:validation:Optional
+	KeyPairURIRefRef *v2.NamespacedReference `json:"keyPairUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Keypair in arubacloud to populate keyPairUriRef.
+	// +kubebuilder:validation:Optional
+	KeyPairURIRefSelector *v2.NamespacedSelector `json:"keyPairUriRefSelector,omitempty" tf:"-"`
 
 	// Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses. Changing this value forces a new resource.
 	// Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses. Changing this value forces a new resource.
@@ -246,7 +364,17 @@ type StorageInitParameters struct {
 
 	// (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable). Changing this value forces a new resource.
 	// URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable). Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	BootVolumeURIRef *string `json:"bootVolumeUriRef,omitempty" tf:"boot_volume_uri_ref,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate bootVolumeUriRef.
+	// +kubebuilder:validation:Optional
+	BootVolumeURIRefRef *v2.NamespacedReference `json:"bootVolumeUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate bootVolumeUriRef.
+	// +kubebuilder:validation:Optional
+	BootVolumeURIRefSelector *v2.NamespacedSelector `json:"bootVolumeUriRefSelector,omitempty" tf:"-"`
 }
 
 type StorageObservation struct {
@@ -260,8 +388,18 @@ type StorageParameters struct {
 
 	// (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable). Changing this value forces a new resource.
 	// URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable). Changing this value forces a new resource.
+	// +crossplane:generate:reference:type=github.com/arubacloud/crossplane-provider-arubacloud/apis/namespaced/arubacloud/v1alpha1.Blockstorage
+	// +crossplane:generate:reference:extractor=github.com/crossplane/upjet/v2/pkg/resource.ExtractParamPath("uri",true)
 	// +kubebuilder:validation:Optional
-	BootVolumeURIRef *string `json:"bootVolumeUriRef" tf:"boot_volume_uri_ref,omitempty"`
+	BootVolumeURIRef *string `json:"bootVolumeUriRef,omitempty" tf:"boot_volume_uri_ref,omitempty"`
+
+	// Reference to a Blockstorage in arubacloud to populate bootVolumeUriRef.
+	// +kubebuilder:validation:Optional
+	BootVolumeURIRefRef *v2.NamespacedReference `json:"bootVolumeUriRefRef,omitempty" tf:"-"`
+
+	// Selector for a Blockstorage in arubacloud to populate bootVolumeUriRef.
+	// +kubebuilder:validation:Optional
+	BootVolumeURIRefSelector *v2.NamespacedSelector `json:"bootVolumeUriRefSelector,omitempty" tf:"-"`
 }
 
 // CloudserverSpec defines the desired state of Cloudserver
@@ -303,7 +441,6 @@ type Cloudserver struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.settings) || (has(self.initProvider) && has(self.initProvider.settings))",message="spec.forProvider.settings is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"

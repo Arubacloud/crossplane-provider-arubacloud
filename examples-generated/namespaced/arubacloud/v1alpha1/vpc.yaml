@@ -11,7 +11,9 @@ spec:
   forProvider:
     location: ITBG-Bergamo
     name: basic-vpc
-    projectId: your-project-id
+    projectIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
     tags:
     - network
     - test

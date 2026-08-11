@@ -1,0 +1,16 @@
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: KeyPair
+metadata:
+  name: my-keypair
+spec:
+  forProvider:
+    name: my-keypair
+    location: ITBG-Bergamo
+    # value is the OpenSSH public key. Write-only — not returned by the API.
+    value: "ssh-ed25519 AAAA... user@host"
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+  providerConfigRef:
+    name: default
