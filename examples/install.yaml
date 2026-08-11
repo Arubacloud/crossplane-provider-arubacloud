@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: provider-arubacloud
 spec:
-  package: xpkg.crossplane.io/arubacloud/crossplane-provider-arubacloud:v0.1.0
+  package: ghcr.io/arubacloud/crossplane-provider-arubacloud:v0.1.0

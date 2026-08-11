@@ -1,6 +1,9 @@
 name: Publish Provider Package
 
 on:
+  push:
+    tags:
+      - 'v*'
   workflow_dispatch:
     inputs:
       version:
@@ -17,8 +20,8 @@ jobs:
     uses: crossplane-contrib/provider-workflows/.github/workflows/publish-provider.yml@451c4dc6ad3691b0a702a997a0ac24e8bbc8bbaa # main
     with:
       repository: provider-arubacloud
-      version: ${{ github.event.inputs.version }}
-      go-version: ${{ github.event.inputs.go-version }}
+      version: ${{ github.event.inputs.version || github.ref_name }}
+      go-version: ${{ github.event.inputs.go-version || '1.24' }}
       cleanup-disk: true
     secrets:
       GHCR_PAT: ${{ secrets.GITHUB_TOKEN }}
