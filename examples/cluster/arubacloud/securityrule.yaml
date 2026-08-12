@@ -1,3 +1,56 @@
+---
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: Securityrule
+metadata:
+  name: allow-ssh
+spec:
+  forProvider:
+    name: allow-ssh
+    location: ITBG-Bergamo
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+    vpcIdRef:
+      name: main-vpc
+    securityGroupIdRef:
+      name: web-sg
+    properties:
+      direction: Ingress
+      protocol: TCP
+      port: "22"
+      target:
+        kind: Ip
+        value: "0.0.0.0/0"
+  providerConfigRef:
+    name: default
+---
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: Securityrule
+metadata:
+  name: allow-http
+spec:
+  forProvider:
+    name: allow-http
+    location: ITBG-Bergamo
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+    vpcIdRef:
+      name: main-vpc
+    securityGroupIdRef:
+      name: web-sg
+    properties:
+      direction: Ingress
+      protocol: TCP
+      port: "80"
+      target:
+        kind: Ip
+        value: "0.0.0.0/0"
+  providerConfigRef:
+    name: default
+---
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
 kind: Securityrule
 metadata:
@@ -19,7 +72,33 @@ spec:
       protocol: TCP
       port: "443"
       target:
-        kind: IP
+        kind: Ip
+        value: "0.0.0.0/0"
+  providerConfigRef:
+    name: default
+---
+apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+kind: Securityrule
+metadata:
+  name: allow-egress
+spec:
+  forProvider:
+    name: allow-egress
+    location: ITBG-Bergamo
+    tags:
+      - crossplane
+    projectIdRef:
+      name: my-project
+    vpcIdRef:
+      name: main-vpc
+    securityGroupIdRef:
+      name: web-sg
+    properties:
+      direction: Egress
+      protocol: ANY
+      port: "*"
+      target:
+        kind: Ip
         value: "0.0.0.0/0"
   providerConfigRef:
     name: default
