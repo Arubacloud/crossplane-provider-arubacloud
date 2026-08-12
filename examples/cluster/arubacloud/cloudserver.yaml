@@ -15,13 +15,12 @@ spec:
       name: my-project
 
     network:
-      # vpcUriRefRef resolves the VPC's uri from status.atProvider and injects
-      # it into the network.vpc_uri_ref Terraform field.
       vpcUriRefRef:
         name: main-vpc
       subnetUriRefsRefs:
         - name: private-subnet
-      # No ElasticIP attached — server will use a dynamic IP.
+      securitygroupUriRefsRefs:
+        - name: web-sg
       # Uncomment to attach a static IP:
       # elasticIpUriRefRef:
       #   name: web-eip
