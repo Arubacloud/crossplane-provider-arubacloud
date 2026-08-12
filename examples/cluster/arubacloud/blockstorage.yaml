@@ -6,10 +6,12 @@ spec:
   forProvider:
     name: boot-vol
     location: ITBG-Bergamo
-    sizeGb: 50
+    sizeGb: 100
     billingPeriod: Hour
-    type: Standard
+    zone: ITBG-1
+    type: Performance
     bootable: true
+    image: LU22-001
     tags:
       - crossplane
     projectIdRef:
