@@ -21,9 +21,8 @@ spec:
         - name: private-subnet
       securitygroupUriRefsRefs:
         - name: web-sg
-      # Uncomment to attach a static IP:
-      # elasticIpUriRefRef:
-      #   name: web-eip
+      elasticIpUriRefRef:
+        name: web-eip
 
     settings:
       flavorName: CSO4A8
