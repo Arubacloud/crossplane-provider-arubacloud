@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: DBaaSUser
+kind: Dbaasuser
 metadata:
   name: appuser
 spec:

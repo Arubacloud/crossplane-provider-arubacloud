@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: ScheduleJob
+kind: Schedulejob
 metadata:
   name: weekly-cleanup
 spec:

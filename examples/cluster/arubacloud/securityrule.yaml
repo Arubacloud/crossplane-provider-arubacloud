@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: SecurityRule
+kind: Securityrule
 metadata:
   name: allow-https
 spec:

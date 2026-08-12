@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: VPNRoute
+kind: Vpnroute
 metadata:
   name: vpn-route-10-0-0
 spec:

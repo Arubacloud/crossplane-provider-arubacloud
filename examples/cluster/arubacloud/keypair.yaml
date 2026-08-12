@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: KeyPair
+kind: Keypair
 metadata:
   name: my-keypair
 spec:

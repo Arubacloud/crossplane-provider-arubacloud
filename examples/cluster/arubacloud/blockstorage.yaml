@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: BlockStorage
+kind: Blockstorage
 metadata:
   name: boot-vol
 spec:
