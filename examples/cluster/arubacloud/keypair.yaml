@@ -6,11 +6,17 @@ spec:
   forProvider:
     name: my-keypair
     location: ITBG-Bergamo
-    # value is the OpenSSH public key. Write-only — not returned by the API.
-    value: "ssh-ed25519 AAAA... user@host"
     tags:
       - crossplane
     projectIdRef:
       name: my-project
+    # valueSecretRef points to a Kubernetes Secret containing the OpenSSH public key.
+    # Create it with:
+    #   kubectl create secret generic my-keypair-pub \
+    #     --from-literal=value="ssh-ed25519 AAAA... user@host"
+    valueSecretRef:
+      name: my-keypair-pub
+      namespace: crossplane-system
+      key: value
   providerConfigRef:
     name: default

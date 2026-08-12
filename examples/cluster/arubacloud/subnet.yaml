@@ -6,23 +6,27 @@ spec:
   forProvider:
     name: private-subnet
     location: ITBG-Bergamo
-    type: Advanced
+    type: Basic
     tags:
       - crossplane
     projectIdRef:
       name: my-project
-    # vpcIdRef resolves to the vpc_id field used in the composite import ID.
     vpcIdRef:
       name: main-vpc
-    network:
-      address: "10.0.1.0/24"
-      dhcp:
-        enabled: true
-        range:
-          startIp: "10.0.1.10"
-          count: 200
-        dns:
-          - "8.8.8.8"
-          - "8.8.4.4"
   providerConfigRef:
     name: default
+---
+# Advanced subnet example (with DHCP — uncomment network block and set type: Advanced):
+# spec:
+#   forProvider:
+#     type: Advanced
+#     network:
+#       address: "10.0.1.0/24"
+#       dhcp:
+#         enabled: true
+#         range:
+#           start: "10.0.1.10"
+#           count: 200
+#         dns:
+#           - "8.8.8.8"
+#           - "8.8.4.4"
