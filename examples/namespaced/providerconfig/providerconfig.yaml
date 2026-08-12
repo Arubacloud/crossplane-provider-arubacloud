@@ -1,4 +1,4 @@
-apiVersion: arubacloud.m.crossplane.io/v1beta1
+apiVersion: arubacloud.m.arubacloud.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
