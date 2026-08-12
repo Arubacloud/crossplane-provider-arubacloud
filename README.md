@@ -32,7 +32,7 @@ kubectl apply -f examples/install.yaml
 Or using the Crossplane CLI:
 
 ```bash
-crossplane xpkg install provider ghcr.io/arubacloud/crossplane-provider-arubacloud:v0.1.0
+crossplane xpkg install provider ghcr.io/arubacloud/crossplane-provider-arubacloud:v0.3.0
 ```
 
 ## Quickstart
