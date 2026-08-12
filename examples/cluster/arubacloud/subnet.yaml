@@ -16,7 +16,7 @@ spec:
   providerConfigRef:
     name: default
 ---
-# Advanced subnet example (with DHCP — uncomment network block and set type: Advanced):
+# Advanced subnet example (with DHCP - uncomment network block and set type: Advanced):
 # spec:
 #   forProvider:
 #     type: Advanced

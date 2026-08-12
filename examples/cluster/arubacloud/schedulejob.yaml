@@ -13,7 +13,7 @@ spec:
     properties:
       enabled: true
       # Use Recurring for declarative jobs. OneShot jobs require
-      # managementPolicies: [Create, Observe] — see docs/limitations.md.
+      # managementPolicies: [Create, Observe] - see docs/limitations.md.
       scheduleJobType: Recurring
       cron: "0 2 * * 0"
       steps:

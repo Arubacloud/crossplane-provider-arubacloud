@@ -12,7 +12,7 @@ spec:
       name: main-vpc
     vpcPeeringIdRef:
       name: main-to-secondary
-    # destination and nextHop are REQUIRES VERIFICATION — check schema
+    # destination and nextHop are REQUIRES VERIFICATION - check schema
     destination: "10.0.0.0/24"
     nextHop: "192.168.1.1"
   providerConfigRef:
