@@ -9,7 +9,7 @@ spec:
     zone: ITBG-1
     tags:
       - crossplane
-      - web
+      - webserver
 
     projectIdRef:
       name: my-project
