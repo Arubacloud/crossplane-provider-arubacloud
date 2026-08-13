@@ -1,4 +1,4 @@
-apiVersion: arubacloud.arubacloud.m.crossplane.io/v1alpha1
+apiVersion: arubacloud.m.crossplane.io/v1alpha1
 kind: Subnet
 metadata:
   annotations:

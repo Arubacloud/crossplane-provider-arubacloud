@@ -1,4 +1,4 @@
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: Vpcpeeringroute
 metadata:
   name: peering-route-10-0-0

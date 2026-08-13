@@ -9,7 +9,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "arubacloud.arubacloud.crossplane.io"
+	Group   = "arubacloud.crossplane.io"
 	Version = "v1beta1"
 )
 
