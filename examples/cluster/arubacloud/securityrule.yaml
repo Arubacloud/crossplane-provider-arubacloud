@@ -7,8 +7,6 @@ spec:
   forProvider:
     name: allow-ssh
     location: ITBG-Bergamo
-    tags:
-      - crossplane
     projectIdRef:
       name: my-project
     vpcIdRef:
@@ -33,8 +31,6 @@ spec:
   forProvider:
     name: allow-http
     location: ITBG-Bergamo
-    tags:
-      - crossplane
     projectIdRef:
       name: my-project
     vpcIdRef:
@@ -59,8 +55,6 @@ spec:
   forProvider:
     name: allow-https
     location: ITBG-Bergamo
-    tags:
-      - crossplane
     projectIdRef:
       name: my-project
     vpcIdRef:
@@ -85,8 +79,6 @@ spec:
   forProvider:
     name: allow-egress
     location: ITBG-Bergamo
-    tags:
-      - crossplane
     projectIdRef:
       name: my-project
     vpcIdRef:
