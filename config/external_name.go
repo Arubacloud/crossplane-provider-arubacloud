@@ -214,18 +214,18 @@ func dbaasUserExternalName() config.ExternalName {
 }
 
 // databaseGrantExternalName handles arubacloud_databasegrant.
-// Import format REQUIRES VERIFICATION.
+// Import format: project_id/dbaas_id/database/user_id
 func databaseGrantExternalName() config.ExternalName {
 	e := config.IdentifierFromProvider
 	e.GetExternalNameFn = leafIDFromSlash(3)
 	e.GetIDFn = func(_ context.Context, externalName string, parameters map[string]any, _ map[string]any) (string, error) {
 		projectID, _ := parameters["project_id"].(string)
 		dbaasID, _ := parameters["dbaas_id"].(string)
-		databaseID, _ := parameters["database_id"].(string)
-		if projectID == "" || dbaasID == "" || databaseID == "" {
-			return "", fmt.Errorf("project_id, dbaas_id, database_id required (REQUIRES VERIFICATION)")
+		database, _ := parameters["database"].(string)
+		if projectID == "" || dbaasID == "" || database == "" {
+			return "", fmt.Errorf("project_id, dbaas_id, and database are required for database grant import ID")
 		}
-		return projectID + "/" + dbaasID + "/" + databaseID + "/" + externalName, nil
+		return projectID + "/" + dbaasID + "/" + database + "/" + externalName, nil
 	}
 	e.DisableNameInitializer = true
 	return e

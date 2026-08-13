@@ -23,8 +23,6 @@ spec:
         name: web-sg
       # elasticIpUriRefRef is optional - omit for private-only access
     storage:
-      size: 20
-      autoscaling:
-        enabled: false
+      sizeGb: 20
   providerConfigRef:
     name: default
