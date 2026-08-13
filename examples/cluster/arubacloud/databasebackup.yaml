@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: DatabaseBackup
+kind: Databasebackup
 metadata:
   name: appdb-backup
 spec:

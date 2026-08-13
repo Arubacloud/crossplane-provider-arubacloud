@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: SecurityGroup
+kind: Securitygroup
 metadata:
   name: web-sg
 spec:

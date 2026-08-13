@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: CloudServer
+kind: Cloudserver
 metadata:
   name: web-01
 spec:
@@ -9,22 +9,20 @@ spec:
     zone: ITBG-1
     tags:
       - crossplane
-      - web
+      - webserver
 
     projectIdRef:
       name: my-project
 
     network:
-      # vpcUriRefRef resolves the VPC's uri from status.atProvider and injects
-      # it into the network.vpc_uri_ref Terraform field.
       vpcUriRefRef:
         name: main-vpc
       subnetUriRefsRefs:
         - name: private-subnet
-      # No ElasticIP attached — server will use a dynamic IP.
-      # Uncomment to attach a static IP:
-      # elasticIpUriRefRef:
-      #   name: web-eip
+      securitygroupUriRefsRefs:
+        - name: web-sg
+      elasticIpUriRefRef:
+        name: web-eip
 
     settings:
       flavorName: CSO4A8

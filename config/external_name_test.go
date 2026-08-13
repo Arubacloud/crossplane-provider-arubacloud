@@ -261,12 +261,12 @@ func TestDatabaseGrantGetIDFn(t *testing.T) {
 	id, err := e.GetIDFn(context.Background(), "grant-xyz", map[string]any{
 		tfProjectIDKey: testProjectID,
 		tfDbaasIDKey:   testDbaasID,
-		"database_id":  "db-111",
+		"database":     "appdb",
 	}, nil)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	want := testProjectID + "/" + testDbaasID + "/db-111/grant-xyz"
+	want := testProjectID + "/" + testDbaasID + "/appdb/grant-xyz"
 	if id != want {
 		t.Errorf("got %q, want %q", id, want)
 	}
@@ -277,10 +277,10 @@ func TestDatabaseGrantGetIDFn_MissingParams(t *testing.T) {
 	_, err := e.GetIDFn(context.Background(), "grant-xyz", map[string]any{
 		tfProjectIDKey: testProjectID,
 		tfDbaasIDKey:   testDbaasID,
-		// database_id missing
+		// database missing
 	}, nil)
 	if err == nil {
-		t.Error("expected error when database_id is missing, got nil")
+		t.Error("expected error when database is missing, got nil")
 	}
 }
 

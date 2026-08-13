@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: VPNRoute
+kind: Vpnroute
 metadata:
   name: vpn-route-10-0-0
 spec:
@@ -10,7 +10,7 @@ spec:
       name: my-project
     vpnTunnelIdRef:
       name: site-to-site-tunnel
-    # destination REQUIRES VERIFICATION — check VPNRoute schema
+    # destination REQUIRES VERIFICATION - check VPNRoute schema
     destination: "10.0.0.0/24"
   providerConfigRef:
     name: default

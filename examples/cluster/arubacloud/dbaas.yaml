@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: DBaaS
+kind: Dbaas
 metadata:
   name: my-db-cluster
 spec:
@@ -21,10 +21,8 @@ spec:
         name: private-subnet
       securityGroupUriRefRef:
         name: web-sg
-      # elasticIpUriRefRef is optional — omit for private-only access
+      # elasticIpUriRefRef is optional - omit for private-only access
     storage:
-      size: 20
-      autoscaling:
-        enabled: false
+      sizeGb: 20
   providerConfigRef:
     name: default

@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: DatabaseGrant
+kind: Databasegrant
 metadata:
   name: appuser-on-appdb
 spec:
@@ -14,5 +14,7 @@ spec:
     # userIdRef resolves the DBaaSUser external name (= username).
     userIdRef:
       name: appuser
+    # Accepted values: liteadmin, readwrite, readonly
+    role: liteadmin
   providerConfigRef:
     name: default

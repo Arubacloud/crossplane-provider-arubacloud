@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: KaaS
+kind: Kaas
 metadata:
   name: my-cluster
 spec:

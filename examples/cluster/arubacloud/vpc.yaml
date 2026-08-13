@@ -8,7 +8,7 @@ spec:
     location: ITBG-Bergamo
     tags:
       - crossplane
-    # Reference the Project by name — Crossplane resolves it to project_id.
+    # Reference the Project by name - Crossplane resolves it to project_id.
     projectIdRef:
       name: my-project
   providerConfigRef:

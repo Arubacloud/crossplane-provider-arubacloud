@@ -1,5 +1,5 @@
 apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
-kind: VPCPeering
+kind: Vpcpeering
 metadata:
   name: main-to-secondary
 spec:
