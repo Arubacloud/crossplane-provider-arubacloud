@@ -50,7 +50,7 @@ kubectl create secret generic arubacloud-credentials \
 ## Creating the ProviderConfig
 
 ```yaml
-apiVersion: arubacloud.arubacloud.crossplane.io/v1beta1
+apiVersion: arubacloud.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default
@@ -71,7 +71,7 @@ To manage resources in multiple projects with different credentials:
 
 ```yaml
 # Project A credentials
-apiVersion: arubacloud.arubacloud.crossplane.io/v1beta1
+apiVersion: arubacloud.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: project-a
@@ -84,7 +84,7 @@ spec:
       key: credentials
 ---
 # Resource in project A
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: VPC
 metadata:
   name: vpc-project-a

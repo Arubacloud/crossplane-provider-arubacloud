@@ -51,7 +51,7 @@ kubectl create secret generic arubacloud-credentials \
 ### 2. Configure the provider
 
 ```yaml
-apiVersion: arubacloud.arubacloud.crossplane.io/v1beta1
+apiVersion: arubacloud.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
   name: default

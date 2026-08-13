@@ -18,7 +18,7 @@ ID:   vpc-xyz789
 ### 2. Create the Crossplane resource with external-name
 
 ```yaml
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: VPC
 metadata:
   name: existing-vpc
@@ -100,7 +100,7 @@ Each resource type has a specific Terraform import format. Crossplane uses the l
 ## Example: importing a CloudServer
 
 ```yaml
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: CloudServer
 metadata:
   name: imported-server
