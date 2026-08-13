@@ -1,5 +1,5 @@
 ---
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: Securityrule
 metadata:
   name: allow-ssh
@@ -25,7 +25,7 @@ spec:
   providerConfigRef:
     name: default
 ---
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: Securityrule
 metadata:
   name: allow-http
@@ -51,7 +51,7 @@ spec:
   providerConfigRef:
     name: default
 ---
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: Securityrule
 metadata:
   name: allow-https
@@ -77,7 +77,7 @@ spec:
   providerConfigRef:
     name: default
 ---
-apiVersion: arubacloud.arubacloud.crossplane.io/v1alpha1
+apiVersion: arubacloud.crossplane.io/v1alpha1
 kind: Securityrule
 metadata:
   name: allow-egress
