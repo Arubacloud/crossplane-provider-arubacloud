@@ -14,8 +14,9 @@ spec:
       name: my-project
 
     network:
+      # registry-eip is a dedicated elastic IP — do not share with cloudserver
       publicIpUriRefRef:
-        name: web-eip
+        name: registry-eip
       vpcUriRefRef:
         name: main-vpc
       subnetUriRefRef:
@@ -24,10 +25,12 @@ spec:
         name: web-sg
 
     storage:
+      # registry-vol is a Standard data volume (no OS image) — not the cloudserver boot volume
       blockStorageUriRefRef:
-        name: boot-vol
+        name: registry-vol
 
     settings:
+      # Must not be "admin" (reserved by the API)
       adminUser: registry-admin
       # Accepted values: Small, Medium, HighPerf
       concurrentUsersFlavor: Small
