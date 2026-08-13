@@ -29,7 +29,8 @@ spec:
 
     settings:
       adminUser: registry-admin
-      concurrentUsersFlavor: REG2A4
+      # Accepted values: Small, Medium, HighPerf
+      concurrentUsersFlavor: Small
 
   providerConfigRef:
     name: default

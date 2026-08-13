@@ -19,24 +19,22 @@ spec:
         name: main-vpc
       subnetUriRefRef:
         name: private-subnet
-      # securityGroupNameRef extracts spec.forProvider.name from the SecurityGroup
-      # (KaaS references by display name, not URI)
-      securityGroupNameRef:
-        name: web-sg
+      # KaaS creates its own security group with this name — do not reference an existing one
+      securityGroupName: kaas-sg
       nodeCidr:
         address: "192.168.100.0/24"
         name: node-network
       podCidr: "10.244.0.0/16"
 
     settings:
-      kubernetesVersion: "1.29"
+      kubernetesVersion: "1.33.2"
       ha: false
       nodePools:
-        - name: default
-          flavorName: KWO4A8
-          count: 3
-          autoscaling:
-            enabled: false
+        - name: pool-1
+          instance: K2A4
+          nodes: 2
+          zone: ITBG-1
+          autoscaling: false
 
   # kubeconfig is exposed in the connection secret automatically.
   # management_ip is added via AdditionalConnectionDetailsFn.
